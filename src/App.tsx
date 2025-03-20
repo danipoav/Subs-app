@@ -1,6 +1,6 @@
 import Hero from "./components/Hero"
 import Navbar from "./components/Navbar"
-import heroImage from "./assets/prueba2.webp";
+import heroImage from "./assets/tech.jpg";
 import Tech from "./components/Tech";
 import ServicesSlider from "./components/ServicesSlider";
 
@@ -21,8 +21,8 @@ function App() {
             "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
         }} />
         <div className="w-full max-w-6xl px-6">
-          <Tech />
           <ServicesSlider />
+          <Tech />
         </div>
       </div>
     </>

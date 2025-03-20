@@ -6,11 +6,12 @@
     font-family: "Inter", sans-serif;
 }
 
-@keyframes slide{
-    from{
+@keyframes slide {
+    from {
         transform: translateX(0);
     }
-    to{
+
+    to {
         transform: translateX(-100%);
     }
 }
@@ -19,4 +20,16 @@
     display: flex;
     white-space: nowrap;
     animation: slide 15s linear infinite;
-  }
+}
+
+.btn-slide {
+    border: 1px solid #1c1c1f;
+    background-color: #08090a;
+    color: #8a8f98;
+    cursor: pointer;
+    &:hover {
+        color: #f7f8f8;
+        border: 1px solid #232326;
+        background-color: #232326;
+    }
+}

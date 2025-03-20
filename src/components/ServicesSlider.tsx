@@ -7,18 +7,22 @@ export default function ServicesSlider() {
     const services = [
         {
             title: "Premium Streaming",
-            description: "Unlimited access to exclusive content and premium features.",
+            description:
+                "Spotify is a leading digital music streaming service that gives users access to millions of songs, podcasts, and audio content. With both free and premium options, it allows users to discover, share, and enjoy music anytime, anywhere.",
             price: "$9.99/month",
+            image: "https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Primary_Logo_RGB_Green.png",
         },
         {
             title: "Cloud Storage Pro",
             description: "1TB of cloud storage with secure encryption.",
             price: "$5.99/month",
+            image: "https://via.placeholder.com/150", // Imagen de ejemplo
         },
         {
             title: "AI Assistant",
             description: "Personal AI assistant for daily tasks and automation.",
             price: "$12.99/month",
+            image: "https://via.placeholder.com/150",
         },
     ];
 
@@ -33,24 +37,42 @@ export default function ServicesSlider() {
     return (
         <>
             <section className=" w-full flex flex-col items-center py-16 ">
-                <h2 className=" text-2xl md:text-4xl font-bold text-white mb-8">Our Services</h2>
 
-                <div className=" relative w-full max-w-xl overflow-hidden">
-                    <div className=" flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+                <div className=" relative w-full  overflow-hidden">
+                    <div
+                        className="flex transition-transform duration-700 ease-in-out"
+                        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                    >
                         {services.map((service, index) => (
-                            <div key={index} className=" min-w-full bg-gray-600 p-6 rounded-2xl shadow-lg text-white text-center">
-                                <h3 className=" text-2xl font-semibold">{service.title}</h3>
-                                <p className=" mt-2">{service.description}</p>
-                                <p className=" mt-4 text-lg font-bold">{service.price}</p>
+                            <div
+                                key={index}
+                                className={`min-w-full bg-black p-18 pb-24 rounded-2xl shadow-lg text-white flex items-center gap-6 opacity-0 translate-y-6 transition-opacity duration-700 ease-out ${index === currentIndex ? "opacity-100 translate-y-0" : ""
+                                    }`}
+                            >
+
+                                <img src={service.image} alt="Service" className="w-40 h-40 object-contain" />
+
+
+                                <div className="flex-1 text-left">
+                                    <h3 className="text-2xl font-semibold">{service.title}</h3>
+                                    <p className="mt-2 mb-3 text-justify" style={{ color: "#8a8f98" }}>{service.description}</p>
+                                    <div className="flex justify-between">
+                                        <select name="" id="" className=" cursor-pointer">
+                                            <option value="">{service.price}</option>
+                                        </select>
+                                        <button className=" cursor-pointer px-4 py-2 bg-white text-black rounded-lg text-1xl">Subscribe</button>
+                                    </div>
+
+                                </div>
                             </div>
                         ))}
                     </div>
 
-                    <button onClick={handlePrev} className="absolute top-1/2 left-1 -translate-y-1/2 bg-white text-black px-4 py-2 rounded-full shadow-md hover:bg-gray-300">
+                    <button onClick={handlePrev} className="btn-slide absolute top-1/2 left-1 -translate-y-1/2  px-4 py-2 rounded-full shadow-md">
                         ❮
                     </button>
 
-                    <button onClick={handleNext} className="absolute top-1/2 right-1 -translate-y-1/2 bg-white text-black px-4 py-2 rounded-full shadow-md hover:bg-gray-300">
+                    <button onClick={handleNext} className="absolute top-1/2 right-1 -translate-y-1/2 px-4 py-2 rounded-full shadow-md btn-slide">
                         ❯
                     </button>
 
