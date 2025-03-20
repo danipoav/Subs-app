@@ -16,7 +16,7 @@ export default function ServicesSlider() {
             title: "Cloud Storage Pro",
             description: "1TB of cloud storage with secure encryption.",
             price: "$5.99/month",
-            image: "https://via.placeholder.com/150", // Imagen de ejemplo
+            image: "https://via.placeholder.com/150", 
         },
         {
             title: "AI Assistant",
@@ -36,7 +36,7 @@ export default function ServicesSlider() {
 
     return (
         <>
-            <section className=" w-full flex flex-col items-center py-16 ">
+            <section className=" w-full flex flex-col items-center py-16 pt-0 ">
 
                 <div className=" relative w-full  overflow-hidden">
                     <div

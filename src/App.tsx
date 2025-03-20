@@ -16,18 +16,19 @@ function App() {
           <Navbar />
           <Hero />
         </div>
-        <img src={heroImage} alt="Heroimg" className=" w-2/4" style={{
+        <img src={heroImage} alt="Heroimg" className=" w-full" style={{
           WebkitMaskImage:
             "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
           maskImage:
             "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
+          height: "600px"
         }} />
         <div className="w-full max-w-6xl px-6">
           <ServicesSlider />
-          <Hero2/>
+          <Hero2 />
           <Tech />
         </div>
-          <Footer />
+        <Footer />
       </div>
     </>
   )
