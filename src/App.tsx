@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar"
 import heroImage from "./assets/tech.jpg";
 import Tech from "./components/Tech";
 import ServicesSlider from "./components/ServicesSlider";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <ServicesSlider />
           <Tech />
         </div>
+          <Footer />
       </div>
     </>
   )
