@@ -4,6 +4,7 @@ import heroImage from "./assets/tech.jpg";
 import Tech from "./components/Tech";
 import ServicesSlider from "./components/ServicesSlider";
 import Footer from "./components/Footer";
+import Hero2 from "./components/Hero2";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         }} />
         <div className="w-full max-w-6xl px-6">
           <ServicesSlider />
+          <Hero2/>
           <Tech />
         </div>
           <Footer />

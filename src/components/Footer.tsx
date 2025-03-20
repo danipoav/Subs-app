@@ -1,7 +1,7 @@
 
 export default function Footer() {
     return (
-        <footer className=" text-gray-300 py-10 pb-4 mt-16 w-full">
+        <footer className=" text-gray-300 py-10 pb-4 w-full">
 
             <div className="border-t border-gray-700 mt-8 pt-4 text-center text-sm"/>
 
