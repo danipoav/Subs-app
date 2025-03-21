@@ -1,4 +1,4 @@
-export const fetcher = async (endpoint: String, options: RequestInit = {}) => {
+export const fetcher = async <T = any>(endpoint: String, options: RequestInit = {}): Promise<T> => {
 
     const url = 'http://localhost:8080/api';
     const token = localStorage.getItem('token');
