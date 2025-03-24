@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface Service {
     id: number,
-    name: String,
-    description: String,
-    logo: String,
+    name: string,
+    description: string,
+    logo: string,
 }
 
 interface ServiceState {
