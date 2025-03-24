@@ -23,12 +23,11 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm text-gray-400 mb-1" htmlFor="email">
-              Email
-            </label>
+            
             <input
               id="email"
               type="email"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
@@ -38,12 +37,11 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-400 mb-1" htmlFor="password">
-              Password
-            </label>
+            
             <input
               id="password"
               type="password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
@@ -54,7 +52,7 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-white text-black font-semibold py-2 rounded-md hover:bg-gray-200 transition duration-200"
+            className="w-full bg-white text-black font-semibold py-2 rounded-md hover:bg-gray-200 transition duration-200 cursor-pointer"
           >
             Login
           </button>
