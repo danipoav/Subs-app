@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { PiSubsetProperOfFill } from "react-icons/pi";
+
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -11,10 +13,13 @@ export default function LoginPage() {
   };
 
   return (
-          <div className=" min-h-screen flex items-center justify-center px-4" style={{ background: "#08090a" }}>
+    <div className=" min-h-screen flex items-center justify-center px-4" style={{ background: "#08090a" }}>
 
-      <div className="border border-white p-8 rounded-xl shadow-xl w-full max-w-md">
-        <h2 className="text-2xl font-bold text-white mb-6 text-center">Login to your account</h2>
+      <div className=" p-8 rounded-xl shadow-xl w-full max-w-md">
+        <div className=" flex justify-center align-middle pb-2">
+        <PiSubsetProperOfFill size={50} color="white"/>
+        </div>
+        <h2 className="text-2xl font-bold text-white mb-6 text-center">Log in to Sub-Lin</h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
@@ -26,7 +31,8 @@ export default function LoginPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-white"
+              className="w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+              style={{background:"rgb(30, 32, 37)",border:"1px solid rgb(44, 46, 51)"}}
               required
             />
           </div>
@@ -40,7 +46,8 @@ export default function LoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-white"
+              className="w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+              style={{background:"rgb(30, 32, 37)",border:"1px solid rgb(44, 46, 51)"}}
               required
             />
           </div>
