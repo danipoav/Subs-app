@@ -2,39 +2,20 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../features/store";
 import { getAllServices } from "../features/services/serviceThunk";
+import { getAllPlans } from "../features/plans/planThunk";
 
 export default function ServicesSlider() {
 
     const services = useSelector((state: RootState) => state.service.services);
+    const plans = useSelector((state: RootState) => state.plan.plans);
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
         dispatch(getAllServices());
+        dispatch(getAllPlans());
     }, [])
 
     const [currentIndex, setCurrentIndex] = useState(0);
-
-    // const services = [
-    //     {
-    //         title: "Premium Streaming",
-    //         description:
-    //             "Spotify is a leading digital music streaming service that gives users access to millions of songs, podcasts, and audio content. With both free and premium options, it allows users to discover, share, and enjoy music anytime, anywhere.",
-    //         price: "$9.99/month",
-    //         image: "https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Primary_Logo_RGB_Green.png",
-    //     },
-    //     {
-    //         title: "Cloud Storage Pro",
-    //         description: "1TB of cloud storage with secure encryption.",
-    //         price: "$5.99/month",
-    //         image: "https://via.placeholder.com/150", 
-    //     },
-    //     {
-    //         title: "AI Assistant",
-    //         description: "Personal AI assistant for daily tasks and automation.",
-    //         price: "$12.99/month",
-    //         image: "https://via.placeholder.com/150",
-    //     },
-    // ];
 
     const handlePrev = () => {
         setCurrentIndex((prevIndex) => (prevIndex === 0 ? services.length - 1 : prevIndex - 1));
@@ -67,8 +48,10 @@ export default function ServicesSlider() {
                                     <h3 className="text-2xl font-semibold">{service.name}</h3>
                                     <p className="mt-2 mb-3 text-justify" style={{ color: "#8a8f98" }}>{service.description}</p>
                                     <div className="flex justify-between">
-                                        <select name="" id="" className=" cursor-pointer">
-                                            <option value="">{"20$"}</option>
+                                        <select name="" id="" className=" cursor-pointer px-2 py-2 rounded-lg">
+                                            {plans.filter(plan => plan.service.id === service.id).map(plan => (
+                                                <option className=" bg-gray-500 cursor-pointer" key={plan.id} value={plan.id}>{plan.name}</option>
+                                            ))}
                                         </select>
                                         <button className=" cursor-pointer px-4 py-2 bg-white text-black rounded-lg text-1xl">Subscribe</button>
                                     </div>

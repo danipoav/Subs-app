@@ -1,7 +1,7 @@
 import { getAllServices } from "./serviceThunk";
 import { createSlice } from "@reduxjs/toolkit";
 
-interface Service {
+export interface Service {
     id: number,
     name: string,
     description: string,
