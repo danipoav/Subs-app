@@ -2,13 +2,13 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetcher } from "../api/fetcher";
 
 export const getLoginToken = createAsyncThunk(
-    '/login', async () => {
+    '/auth/login', async (username, password) => {
         try {
             const response = await fetcher('/auth/login', {
                 method: 'POST',
                 body: JSON.stringify({
-                    "username": "user@gmail.com",
-                    "password": "User"
+                    "username": username,
+                    "password": password
                 })
             })
             if (response) {
