@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getLoginToken } from "./authThunk";
+import { getLoginToken, getRegisterToken } from "./authThunk";
 
 interface AuthState {
     token: null | string,
@@ -37,6 +37,9 @@ const authSlice = createSlice({
             .addCase(getLoginToken.rejected, (state) => {
                 state.error = "Incorrect Credentials";
                 state.status = 'error';
+            })
+            .addCase(getRegisterToken.fulfilled,(state)=>{
+                
             })
     }
 })

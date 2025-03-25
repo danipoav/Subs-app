@@ -8,13 +8,15 @@ import { PiSubsetProperOfFill } from "react-icons/pi";
 export default function RegisterPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
     const { error, status, token } = useSelector((state: RootState) => state.auth);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        dispatch(getLoginToken({ email, password }));
+        console.log(name);
+        // dispatch(getLoginToken({ email, password }));
     };
 
     useEffect(() => {
@@ -22,7 +24,6 @@ export default function RegisterPage() {
             navigate('/');
         }
     }, [status, navigate, token])
-
     return (
         <div className=" min-h-screen flex items-center justify-center px-4" style={{ background: "#08090a" }}>
 
@@ -46,6 +47,8 @@ export default function RegisterPage() {
                             className="w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
                             style={{ background: "rgb(30, 32, 37)", border: "1px solid rgb(44, 46, 51)" }}
                             required
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </div>
                     <div>
@@ -76,13 +79,13 @@ export default function RegisterPage() {
                         type="submit"
                         className="w-full bg-white text-black font-semibold py-2 rounded-md hover:bg-gray-200 transition duration-200 cursor-pointer"
                     >
-                        Login
+                        Register
                     </button>
                 </form>
 
                 <p className="text-sm text-gray-500 mt-6 text-center cursor-pointer">
                     Already have an account?{" "}
-                    <a onClick={()=> navigate('/login')} className="text-white underline hover:text-gray-300">
+                    <a onClick={() => navigate('/login')} className="text-white underline hover:text-gray-300">
                         Log in here
                     </a>
                 </p>
