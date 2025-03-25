@@ -3,14 +3,14 @@ import { getLoginToken } from "./authThunk";
 
 interface AuthState {
     token: null | string,
-    loading: boolean,
-    error: null | string
+    error: null | string,
+    status: 'idle' | 'error' | 'loading' | 'authenticated';
 }
 
 const initialState: AuthState = {
-    token: null,
-    loading: false,
-    error: null
+    token: localStorage.getItem('token'),
+    error: null,
+    status: 'idle'
 }
 
 const authSlice = createSlice({
@@ -20,16 +20,17 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getLoginToken.fulfilled, (state, action) => {
-                state.token = action.payload;
-                state.loading = false;
+                state.token = action.payload.token;
                 state.error = null;
+                state.status = 'authenticated'
             })
             .addCase(getLoginToken.pending, (state) => {
-                state.loading = true;
                 state.error = null;
+                state.status = 'loading'
             })
             .addCase(getLoginToken.rejected, (state) => {
                 state.error = "Incorrect Credentials";
+                state.status = 'error';
             })
     }
 })

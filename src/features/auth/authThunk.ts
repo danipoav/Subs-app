@@ -1,22 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetcher } from "../api/fetcher";
+import { fetcherNoToken } from "../api/fetcherNoToken";
 
-export const getLoginToken = createAsyncThunk(
-    '/auth/login', async (username, password) => {
+export const getLoginToken = createAsyncThunk<{ token: string }, { email: string; password: string }>(
+    '/auth/login', async ({ email, password }) => {
         try {
-            const response = await fetcher('/auth/login', {
+            const response = await fetcherNoToken('auth/login', {
                 method: 'POST',
                 body: JSON.stringify({
-                    "username": username,
+                    "email": email,
                     "password": password
                 })
             })
-            if (response) {
-                const token = response;
-                return token;
-            } else {
-                throw new Error('Error getting credentials');
-            }
+            localStorage.setItem('token', response.token);
+            return response.token;
         } catch (error: any) {
             throw new Error(error.message || 'Error authenticating');
         }
