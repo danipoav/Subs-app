@@ -12,7 +12,7 @@ export const getLoginToken = createAsyncThunk<{ token: string }, { email: string
                 })
             })
             localStorage.setItem('token', response.token);
-            return response.token;
+            return response;
         } catch (error: any) {
             throw new Error(error.message || 'Error authenticating');
         }

@@ -5,7 +5,6 @@ import { AppDispatch, RootState } from "../../features/store";
 import { getLoginToken } from "../../features/auth/authThunk";
 import { useNavigate } from "react-router-dom";
 
-
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +15,6 @@ export default function LoginPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(getLoginToken({ email, password }));
-    navigate('/');
   };
 
   useEffect(() => {

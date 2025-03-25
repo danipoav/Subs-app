@@ -16,7 +16,13 @@ const initialState: AuthState = {
 const authSlice = createSlice({
     name: "auth",
     initialState,
-    reducers: {},
+    reducers: {
+        logout: (state) => {
+            state.token = null;
+            state.status = 'idle';
+            state.error = null;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getLoginToken.fulfilled, (state, action) => {
@@ -36,3 +42,4 @@ const authSlice = createSlice({
 })
 
 export default authSlice.reducer;
+export const {logout} = authSlice.actions;
