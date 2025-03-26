@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { AppDispatch, RootState } from "../../features/store";
 import { PiSubsetProperOfFill } from "react-icons/pi";
-import { getRegisterToken } from "../../features/auth/authThunk";
-import { resetAuthState } from "../../features/auth/authSlice";
+import { AppDispatch, RootState } from "../features/store";
+import { getRegisterToken } from "../features/auth/authThunk";
+import { resetAuthState } from "../features/auth/authSlice";
+
 
 export default function RegisterPage() {
     const [email, setEmail] = useState("");

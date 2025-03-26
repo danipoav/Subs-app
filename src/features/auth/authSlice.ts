@@ -10,7 +10,7 @@ interface AuthState {
 const initialState: AuthState = {
     token: localStorage.getItem('token'),
     error: null,
-    status: 'idle'
+    status: localStorage.getItem('token') ? 'authenticated' : 'error'
 }
 
 const authSlice = createSlice({

@@ -1,7 +1,8 @@
-import Index from "./components/pages/Index"
 import { Route, Routes } from "react-router-dom"
-import LoginPage from "./components/pages/LoginPage"
-import RegisterPage from "./components/pages/RegisterPage"
+import Index from "./pages/Index"
+import LoginPage from "./pages/LoginPage"
+import RegisterPage from "./pages/RegisterPage"
+
 
 function App() {
 
