@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { getLoginToken } from "../../features/auth/authThunk";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { AppDispatch, RootState } from "../../features/store";
 import { PiSubsetProperOfFill } from "react-icons/pi";
+import { getRegisterToken } from "../../features/auth/authThunk";
+import { resetAuthState } from "../../features/auth/authSlice";
 
 export default function RegisterPage() {
     const [email, setEmail] = useState("");
@@ -15,9 +16,12 @@ export default function RegisterPage() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(name);
-        // dispatch(getLoginToken({ email, password }));
+        dispatch(getRegisterToken({ name, email, password }));
     };
+
+    useEffect(() => {
+        dispatch(resetAuthState());
+    }, [dispatch])
 
     useEffect(() => {
         if (status === 'authenticated' && token) {
@@ -36,7 +40,7 @@ export default function RegisterPage() {
                 <form onSubmit={handleSubmit} className="space-y-5">
                     {error && (
                         <div className=" text-center">
-                            <span className=" text-red-600">Incorrect credentials</span>
+                            <span className=" text-red-600">{error}</span>
                         </div>
                     )}
                     <div>

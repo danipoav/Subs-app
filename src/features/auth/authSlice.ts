@@ -21,6 +21,10 @@ const authSlice = createSlice({
             state.token = null;
             state.status = 'idle';
             state.error = null;
+        },
+        resetAuthState: (state) => {
+            state.error = null;
+            state.status = 'idle';
         }
     },
     extraReducers: (builder) => {
@@ -38,11 +42,17 @@ const authSlice = createSlice({
                 state.error = "Incorrect Credentials";
                 state.status = 'error';
             })
-            .addCase(getRegisterToken.fulfilled,(state)=>{
-                
+            .addCase(getRegisterToken.fulfilled, (state, action) => {
+                state.status = 'authenticated';
+                state.token = action.payload.token;
+                state.error = null;
+            })
+            .addCase(getRegisterToken.rejected, (state) => {
+                state.error = 'Email already exists';
+                state.status = 'error'
             })
     }
 })
 
 export default authSlice.reducer;
-export const {logout} = authSlice.actions;
+export const { logout, resetAuthState } = authSlice.actions;

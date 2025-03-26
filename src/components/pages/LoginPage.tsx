@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../features/store";
 import { getLoginToken } from "../../features/auth/authThunk";
 import { useNavigate } from "react-router-dom";
+import { resetAuthState } from "../../features/auth/authSlice";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -16,6 +17,10 @@ export default function LoginPage() {
     e.preventDefault();
     dispatch(getLoginToken({ email, password }));
   };
+
+  useEffect(() => {
+    dispatch(resetAuthState());
+  }, [dispatch])
 
   useEffect(() => {
     if (status === 'authenticated' && token) {
