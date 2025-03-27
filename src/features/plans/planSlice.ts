@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllPlans } from "./planThunk";
+import { getAllPlans, getPlanById } from "./planThunk";
 import { Service } from "../services/serviceSlice";
 
-interface Plan {
+export interface Plan {
     id: number,
     service: Service,
     name: string,
@@ -13,13 +13,15 @@ interface Plan {
 interface PlanState {
     loading: boolean,
     error: string | null,
-    plans: Plan[]
+    plans: Plan[],
+    planById: Plan | null
 }
 
 const initialState: PlanState = {
     loading: false,
     error: null,
-    plans: []
+    plans: [],
+    planById: null
 }
 
 const planSlice = createSlice({
@@ -39,6 +41,10 @@ const planSlice = createSlice({
             .addCase(getAllPlans.rejected, (state) => {
                 state.error = "Error fetching plans";
                 state.loading = false;
+            })
+            .addCase(getPlanById.fulfilled, (state, action) => {
+                state.planById = action.payload;
+                state.error = null;
             })
     }
 });
