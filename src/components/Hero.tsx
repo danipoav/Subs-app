@@ -19,7 +19,10 @@ export default function Hero() {
                 <h1 className={`text-4xl md:text-6xl font-bold transition-all duration-1000 max-w-4xl${isVisible ? " opacity-100 translate-y-0" : " opacity-0 translate-y-10"}`}>{
                     status === 'authenticated' ? 'Welcome back, Daniel. Ready to take control?' : 'Simplify Your Subscription Management'
                 }</h1>
-                <p className={`mt-4 text-lg md:text-xl max-w-2xl text-left transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`} style={{ color: "#8a8f98" }}>Manage all your subscriptions in one place. Our platform helps you track, optimize, and automate your recurring services with ease. Never miss a payment again and stay in control of your expenses effortlessly.</p>
+                <p className={`mt-4 text-lg md:text-xl max-w-2xl text-left transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`} style={{ color: "#8a8f98" }}>
+                    {status === 'authenticated' ? 'Take charge of your digital services with confidence. Our platform centralizes all your recurring subscriptions, giving you full visibility and control. From budgeting to smart reminders.'
+                        : 'Manage all your subscriptions in one place. Our platform helps you track, optimize, and automate your recurring services with ease. Never miss a payment again and stay in control of your expenses effortlessly.'}
+                </p>
                 <div className={`${isVisible ? " opacity-100 translate-y-0" : "opacity-0 translate-y-10"} pt-5 transition-all duration-1000 delay-700`}>
                     <button className={`bg-gray-300 text-black px-4 py-2 rounded-md hover:bg-white transition-all cursor-pointer`}>
                         Watch Services
