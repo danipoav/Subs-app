@@ -17,8 +17,8 @@ export default function PaymentPage() {
 
 
     return (
-        <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center px-4">
-            <div className="bg-gray-900 p-8 rounded-xl shadow-lg w-full max-w-md text-center space-y-6">
+        <div className="min-h-screen text-white flex items-center justify-center px-4" style={{ background: "#08090a" }}>
+            <div className="bg-black p-8 rounded-xl shadow-lg w-full max-w-md text-center space-y-6">
                 <img src={plan?.service.logo} alt={plan?.service.name} className="w-20 h-20 mx-auto" />
                 <h2 className="text-2xl font-bold">{plan?.service.name} – {plan?.name}</h2>
                 <p className="text-gray-400">You’re about to subscribe to the <span className="text-white font-semibold">{plan?.name}</span> plan for <span className="text-white">${plan?.price}</span>.</p>
@@ -33,7 +33,7 @@ export default function PaymentPage() {
                 </button>
                 <button
                     // onClick={() => handlePayment("Pending")}
-                    className="w-full border border-gray-500 text-white py-2 rounded-md cursor-pointer hover:bg-gray-800 transition"
+                    className="w-full border border-gray-500 text-white py-2 rounded-md cursor-pointer hover:bg-gray-950 transition"
                 >
                     Pay Later
                 </button>

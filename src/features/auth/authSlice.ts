@@ -1,6 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getLoginToken, getRegisterToken } from "./authThunk";
 
+export interface User {
+    id: number,
+    name: string,
+    email: string,
+    password: string,
+    rol: 'ADMIN' | 'USER'
+}
+
 interface AuthState {
     token: null | string,
     error: null | string,
