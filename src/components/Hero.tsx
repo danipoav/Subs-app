@@ -7,7 +7,7 @@ import { RootState } from "../features/store";
 export default function Hero() {
 
     const [isVisible, setIsVisible] = useState(false);
-    const { status } = useSelector((state: RootState) => state.auth);
+    const { status, user } = useSelector((state: RootState) => state.auth);
 
     useEffect(() => {
         setTimeout(() => setIsVisible(true), 500)
@@ -17,7 +17,7 @@ export default function Hero() {
         <>
             <section className="w-full max-w-6xl mx-auto text-left pt-35 px-6">
                 <h1 className={`text-4xl md:text-6xl font-bold transition-all duration-1000 max-w-4xl${isVisible ? " opacity-100 translate-y-0" : " opacity-0 translate-y-10"}`}>{
-                    status === 'authenticated' ? 'Welcome back, Daniel. Ready to take control?' : 'Simplify Your Subscription Management'
+                    status === 'authenticated' ? `Welcome back, ${user?.name}. Ready to take control?` : 'Simplify Your Subscription Management'
                 }</h1>
                 <p className={`mt-4 text-lg md:text-xl max-w-2xl text-left transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`} style={{ color: "#8a8f98" }}>
                     {status === 'authenticated' ? 'Take charge of your digital services with confidence. Our platform centralizes all your recurring subscriptions, giving you full visibility and control. From budgeting to smart reminders.'

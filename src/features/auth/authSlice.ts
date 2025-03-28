@@ -13,12 +13,14 @@ interface AuthState {
     token: null | string,
     error: null | string,
     status: 'idle' | 'error' | 'loading' | 'authenticated';
+    user: null | User
 }
 
 const initialState: AuthState = {
     token: localStorage.getItem('token'),
     error: null,
-    status: localStorage.getItem('token') ? 'authenticated' : 'error'
+    status: localStorage.getItem('token') ? 'authenticated' : 'error',
+    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!) : null
 }
 
 const authSlice = createSlice({
@@ -29,6 +31,7 @@ const authSlice = createSlice({
             state.token = null;
             state.status = 'idle';
             state.error = null;
+            state.user = null;
         },
         resetAuthState: (state) => {
             state.error = null;
@@ -41,6 +44,7 @@ const authSlice = createSlice({
                 state.token = action.payload.token;
                 state.error = null;
                 state.status = 'authenticated'
+                state.user = action.payload.user;
             })
             .addCase(getLoginToken.pending, (state) => {
                 state.error = null;
@@ -54,6 +58,7 @@ const authSlice = createSlice({
                 state.status = 'authenticated';
                 state.token = action.payload.token;
                 state.error = null;
+                state.user = action.payload.user;
             })
             .addCase(getRegisterToken.rejected, (state) => {
                 state.error = 'Email already exists';

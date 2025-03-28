@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetcherNoToken } from "../api/fetcherNoToken";
+import { User } from "./authSlice";
 
-export const getLoginToken = createAsyncThunk<{ token: string }, { email: string; password: string }>(
+export const getLoginToken = createAsyncThunk<{ token: string, user: User }, { email: string; password: string }>(
     '/auth/login', async ({ email, password }) => {
         try {
             const response = await fetcherNoToken('auth/login', {
@@ -12,13 +13,14 @@ export const getLoginToken = createAsyncThunk<{ token: string }, { email: string
                 })
             })
             localStorage.setItem('token', response.token);
+            localStorage.setItem('user', JSON.stringify(response.user));
             return response;
         } catch (error: any) {
             throw new Error(error.message || 'Error authenticating');
         }
     });
 
-export const getRegisterToken = createAsyncThunk<{ token: string }, { name: string, email: string, password: string }>(
+export const getRegisterToken = createAsyncThunk<{ token: string, user: User }, { name: string, email: string, password: string }>(
     '/auth/resgister', async ({ name, email, password }) => {
         try {
             const response = await fetcherNoToken('auth/register', {
@@ -29,7 +31,8 @@ export const getRegisterToken = createAsyncThunk<{ token: string }, { name: stri
                     "password": password
                 })
             });
-            localStorage.setItem('token',response.token)
+            localStorage.setItem('token', response.token)
+            localStorage.setItem('user', JSON.stringify(response.user));
             return response;
         } catch (error: any) {
             throw new Error(error.message || 'Error registering');

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 import { AppDispatch, RootState } from "../features/store";
 import { getPlanById } from "../features/plans/planThunk";
+import { SubscriptionCreate } from "../features/subscriptions/subscriptionsSlice";
 
 export default function PaymentPage() {
 
@@ -15,6 +16,9 @@ export default function PaymentPage() {
         dispatch(getPlanById(Number(planId)));
     }, [])
 
+    const handleFakePayment = (subscriptionRequest: SubscriptionCreate) => {
+        
+    }
 
     return (
         <div className="min-h-screen text-white flex items-center justify-center px-4" style={{ background: "#08090a" }}>
