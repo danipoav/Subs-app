@@ -19,7 +19,24 @@ export default function PaymentPage() {
     return (
         <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center px-4">
             <div className="bg-gray-900 p-8 rounded-xl shadow-lg w-full max-w-md text-center space-y-6">
-                {plan?.name}
+                <img src={plan?.service.logo} alt={plan?.service.name} className="w-20 h-20 mx-auto" />
+                <h2 className="text-2xl font-bold">{plan?.service.name} – {plan?.name}</h2>
+                <p className="text-gray-400">You’re about to subscribe to the <span className="text-white font-semibold">{plan?.name}</span> plan for <span className="text-white">${plan?.price}</span>.</p>
+
+                <p className="text-sm text-gray-500">Billing cycle: {plan?.period}</p>
+
+                <button
+                    //   onClick={handleFakePayment}
+                    className="w-full bg-white text-black py-2 rounded-md mb-3 cursor-pointer hover:bg-gray-200 transition"
+                >
+                    Confirm Payment
+                </button>
+                <button
+                    // onClick={() => handlePayment("Pending")}
+                    className="w-full border border-gray-500 text-white py-2 rounded-md cursor-pointer hover:bg-gray-800 transition"
+                >
+                    Pay Later
+                </button>
             </div>
         </div>
 
