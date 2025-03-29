@@ -8,16 +8,20 @@ import { SubscriptionCreate } from "../features/subscriptions/subscriptionsSlice
 export default function PaymentPage() {
 
     const dispatch = useDispatch<AppDispatch>()
-
     const { planId } = useParams();
+
     const plan = useSelector((state: RootState) => state.plan.planById);
+    const user = useSelector((state: RootState) => state.auth.user);
+    const startDate = new Date().toISOString();
+    const renewalDate = new Date().setMonth(new Date().getMonth() + 1)
 
     useEffect(() => {
         dispatch(getPlanById(Number(planId)));
+        console.log(startDate, renewalDate);
     }, [])
 
-    const handleFakePayment = (subscriptionRequest: SubscriptionCreate) => {
-        
+    const handleFakePayment = () => {
+
     }
 
     return (
