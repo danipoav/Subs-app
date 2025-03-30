@@ -12,8 +12,10 @@ export default function PaymentPage() {
 
     const plan = useSelector((state: RootState) => state.plan.planById);
     const user = useSelector((state: RootState) => state.auth.user);
-    const startDate = new Date().toISOString();
-    const renewalDate = new Date().setMonth(new Date().getMonth() + 1)
+    const startDate = new Date().toISOString()
+    const nextMonth = new Date();
+    nextMonth.setMonth(nextMonth.getMonth() + 1)
+    const renewalDate = nextMonth.toISOString();
 
     useEffect(() => {
         dispatch(getPlanById(Number(planId)));
