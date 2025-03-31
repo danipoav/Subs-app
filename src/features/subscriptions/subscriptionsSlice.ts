@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { User } from "../auth/authSlice";
 import { Plan } from "../plans/planSlice";
-import { createSubscription, getAllSubs } from "./subscriptionsThunk";
+import { createSubscription, getSubsByUserId } from "./subscriptionsThunk";
 
 
 export interface SubscriptionCreate {
@@ -33,11 +33,11 @@ const subscribtionsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getAllSubs.fulfilled, (state, action) => {
+            .addCase(getSubsByUserId.fulfilled, (state, action) => {
                 state.subscriptions = action.payload;
                 state.error = null;
             })
-            .addCase(getAllSubs.rejected, (state) => {
+            .addCase(getSubsByUserId.rejected, (state) => {
                 state.error = 'Error getting all subscriptions';
             })
             .addCase(createSubscription.fulfilled, (state) => {

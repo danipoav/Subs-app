@@ -2,15 +2,15 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetcher } from "../api/fetcher";
 import { Subscription } from "./subscriptionsSlice";
 
-export const getAllSubs = createAsyncThunk(
-    '/subscriptions/getAll', async () => {
+export const getSubsByUserId = createAsyncThunk<Subscription[], number>(
+    '/subscription/getByUserId', async (userId) => {
         try {
-            const response = await fetcher('api/subscribe', {
+            const response = await fetcher(`subscribe/${userId}`, {
                 method: 'GET'
             })
-            return response;
+            return response
         } catch (error: any) {
-            throw new Error(error.message || 'Error getting all subscriptions');
+            throw new Error(error.message || 'Error getting subscriptions by UserId');
         }
     }
 )
