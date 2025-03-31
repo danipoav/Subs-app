@@ -1,26 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Subscription } from "../subscriptions/subscriptionsSlice";
-import { getPaymentBySubsId } from "./paymentThunk";
+import { getAllPayments, getPaymentBySubsId } from "./paymentThunk";
 
-interface Payment {
+export interface Payment {
     id: number,
     amount: number,
     payment_date: Date,
     subscribe_id: Subscription,
     state: 'Pagado' | 'Pendiente'
-
 }
 
 interface PaymentState {
     error: string | null,
-    payments: Payment[],
-    loading: boolean
+    payment: Payment[],
+    loading: boolean,
+    payments: Payment[]
 }
 
 const initialState: PaymentState = {
-    payments: [],
+    payment: [],
     error: null,
-    loading: false
+    loading: false,
+    payments: []
 }
 
 const paymentSlice = createSlice({
@@ -30,12 +31,20 @@ const paymentSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getPaymentBySubsId.fulfilled, (state, action) => {
-                state.payments = action.payload
+                state.payment = action.payload
                 state.error = null;
                 state.loading = false;
             })
             .addCase(getPaymentBySubsId.rejected, (state) => {
-                state.error = 'Failed getting payments';
+                state.error = 'Failed getting payments by id';
+            })
+            .addCase(getAllPayments.fulfilled, (state, action) => {
+                state.payments = action.payload
+                state.error = null;
+                state.loading = false;
+            })
+            .addCase(getAllPayments.rejected,(state)=>{
+                state.error = 'Failed getting all payments';
             })
     }
 });

@@ -3,6 +3,7 @@ import { AppDispatch, RootState } from "../features/store"
 import { useEffect } from "react";
 import { getSubsByUserId } from "../features/subscriptions/subscriptionsThunk";
 import { useNavigate } from "react-router-dom";
+import { getAllPayments } from "../features/payment/paymentThunk";
 
 export default function SubscriptionComponent() {
 
@@ -11,8 +12,10 @@ export default function SubscriptionComponent() {
 
     const userId = useSelector((state: RootState) => state.auth.user?.id);
     const subscriptions = useSelector((state: RootState) => state.subscription.subscriptions);
+    const payments = useSelector((state: RootState) => state.payment.payments)
 
     useEffect(() => {
+        dispatch(getAllPayments())
         userId && dispatch(getSubsByUserId(userId));
     }, [])
 
@@ -38,10 +41,10 @@ export default function SubscriptionComponent() {
                         </div>
 
 
-
                     </div>
                 ))}
             </div>
         </section>
     )
 }
+//Empezar a crear los botones y usar el map para que coincidan los payments con las suscripciones
