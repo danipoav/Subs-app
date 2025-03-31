@@ -29,7 +29,7 @@ export default function PaymentPage() {
         dispatch(getPlanById(Number(planId)));
     }, [])
 
-    const handleFakePayment = async () => {
+    const handlePayment = async (payState: 'Pagado' | 'Pendiente') => {
         if (plan && user) {
             const result = await dispatch(createSubscription({
                 planId: plan.id,
@@ -39,13 +39,12 @@ export default function PaymentPage() {
             })).unwrap();
 
             const subId = result.id;
-            console.log(subId)
 
             dispatch(createPayment({
                 amount: plan.price,
                 payment_date: startDate,
-                subscribeId: 2,
-                state: 'Pagado'
+                subscribeId: subId,
+                state: payState
             }))
         }
     }
@@ -60,13 +59,13 @@ export default function PaymentPage() {
                 <p className="text-sm text-gray-500">Billing cycle: {plan?.period}</p>
 
                 <button
-                    onClick={handleFakePayment}
+                    onClick={() => handlePayment("Pagado")}
                     className="w-full bg-white text-black py-2 rounded-md mb-3 cursor-pointer hover:bg-gray-200 transition"
                 >
                     Confirm Payment
                 </button>
                 <button
-                    // onClick={() => handlePayment("Pending")}
+                    onClick={() => handlePayment("Pendiente")}
                     className="w-full border border-gray-500 text-white py-2 rounded-md cursor-pointer hover:bg-gray-950 transition"
                 >
                     Pay Later
