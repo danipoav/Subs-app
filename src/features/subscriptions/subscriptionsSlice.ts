@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { User } from "../auth/authSlice";
 import { Plan } from "../plans/planSlice";
 import { createSubscription, getAllSubs } from "./subscriptionsThunk";
-import { error } from "console";
 
 
 export interface SubscriptionCreate {

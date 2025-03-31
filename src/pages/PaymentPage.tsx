@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 import { AppDispatch, RootState } from "../features/store";
 import { getPlanById } from "../features/plans/planThunk";
-import { SubscriptionCreate } from "../features/subscriptions/subscriptionsSlice";
+import { createSubscription } from "../features/subscriptions/subscriptionsThunk";
+import { createPayment } from "../features/payment/paymentThunk";
 
 export default function PaymentPage() {
 
@@ -12,18 +13,41 @@ export default function PaymentPage() {
 
     const plan = useSelector((state: RootState) => state.plan.planById);
     const user = useSelector((state: RootState) => state.auth.user);
-    const startDate = new Date().toISOString()
+    const startDate = new Date()
     const nextMonth = new Date();
+    const nextYear = new Date();
+
     nextMonth.setMonth(nextMonth.getMonth() + 1)
-    const renewalDate = nextMonth.toISOString();
+    nextYear.setFullYear(nextYear.getFullYear() + 1)
+
+    const monthRenewalDate = nextMonth;
+    const yearRenewalDate = nextYear;
+
+    //Changing date 
 
     useEffect(() => {
         dispatch(getPlanById(Number(planId)));
-        console.log(startDate, renewalDate);
     }, [])
 
-    const handleFakePayment = () => {
+    const handleFakePayment = async () => {
+        if (plan && user) {
+            const result = await dispatch(createSubscription({
+                planId: plan.id,
+                userId: user.id,
+                start_date: startDate,
+                renewal_date: plan.name === 'Mensual' ? monthRenewalDate : yearRenewalDate
+            })).unwrap();
 
+            const subId = result.id;
+            console.log(subId)
+
+            dispatch(createPayment({
+                amount: plan.price,
+                payment_date: startDate,
+                subscribeId: 2,
+                state: 'Pagado'
+            }))
+        }
     }
 
     return (
@@ -36,7 +60,7 @@ export default function PaymentPage() {
                 <p className="text-sm text-gray-500">Billing cycle: {plan?.period}</p>
 
                 <button
-                    //   onClick={handleFakePayment}
+                    onClick={handleFakePayment}
                     className="w-full bg-white text-black py-2 rounded-md mb-3 cursor-pointer hover:bg-gray-200 transition"
                 >
                     Confirm Payment

@@ -1,10 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetcher } from "../api/fetcher";
+import { Subscription } from "./subscriptionsSlice";
 
 export const getAllSubs = createAsyncThunk(
     '/subscriptions/getAll', async () => {
         try {
-            const response = fetcher('api/ubscribe', {
+            const response = await fetcher('api/subscribe', {
                 method: 'GET'
             })
             return response;
@@ -14,10 +15,10 @@ export const getAllSubs = createAsyncThunk(
     }
 )
 
-export const createSubscription = createAsyncThunk(
+export const createSubscription = createAsyncThunk<Subscription, { planId: number, userId: number, start_date: Date, renewal_date: Date }>(
     '/subscription/create', async (request) => {
         try {
-            const response = fetcher('api/subscribe', {
+            const response = await fetcher('subscribe', {
                 method: 'POST',
                 body: JSON.stringify(request)
             })
