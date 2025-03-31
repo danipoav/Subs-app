@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { AppDispatch, RootState } from "../features/store";
 import { getPlanById } from "../features/plans/planThunk";
 import { createSubscription } from "../features/subscriptions/subscriptionsThunk";
@@ -10,6 +10,7 @@ export default function PaymentPage() {
 
     const dispatch = useDispatch<AppDispatch>()
     const { planId } = useParams();
+    const navigate = useNavigate();
 
     const plan = useSelector((state: RootState) => state.plan.planById);
     const user = useSelector((state: RootState) => state.auth.user);
@@ -30,6 +31,7 @@ export default function PaymentPage() {
     }, [])
 
     const handlePayment = async (payState: 'Pagado' | 'Pendiente') => {
+
         if (plan && user) {
             const result = await dispatch(createSubscription({
                 planId: plan.id,
@@ -47,6 +49,7 @@ export default function PaymentPage() {
                 state: payState
             }))
         }
+        navigate('/');
     }
 
     return (
