@@ -6,7 +6,7 @@ export interface Payment {
     id: number,
     amount: number,
     payment_date: Date,
-    subscribe_id: Subscription,
+    subscribe: Subscription,
     state: 'Pagado' | 'Pendiente'
 }
 
