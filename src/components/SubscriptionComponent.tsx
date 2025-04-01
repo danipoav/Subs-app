@@ -21,7 +21,7 @@ export default function SubscriptionComponent() {
 
     return (
         <section className="w-full flex flex-col items-center rounded-lg py-10 px-6">
-            <h1 className="text-3xl font-bold mb-8 text-white">Your Subscriptions</h1>
+            <h1 className="text-3xl font-bold mb-8 text-white">Subscriptions</h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full ">
                 {subscriptions.map((subs) => {
@@ -70,3 +70,4 @@ export default function SubscriptionComponent() {
         </section>
     )
 }
+//Ahora crear la funcionalidad de borrar una suscripcion, funcianolidad del boton pay now, y crear mas servicios
