@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Subscription } from "../subscriptions/subscriptionsSlice";
-import { getAllPayments, getPaymentBySubsId } from "./paymentThunk";
+import { deletPaymentBySubId, getAllPayments, getPaymentBySubsId } from "./paymentThunk";
 
 export interface Payment {
     id: number,
@@ -43,8 +43,15 @@ const paymentSlice = createSlice({
                 state.error = null;
                 state.loading = false;
             })
-            .addCase(getAllPayments.rejected,(state)=>{
+            .addCase(getAllPayments.rejected, (state) => {
                 state.error = 'Failed getting all payments';
+            })
+            .addCase(deletPaymentBySubId.fulfilled, (state, action) => {
+                state.payments = action.payload;
+                state.error = null;
+            })
+            .addCase(deletPaymentBySubId.rejected, (state) => {
+                state.error = 'Error removing payment by subscription ID';
             })
     }
 });

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { User } from "../auth/authSlice";
 import { Plan } from "../plans/planSlice";
-import { createSubscription, getSubsByUserId } from "./subscriptionsThunk";
+import { createSubscription, deleteSubById, getSubsByUserId } from "./subscriptionsThunk";
 
 
 export interface SubscriptionCreate {
@@ -45,6 +45,13 @@ const subscribtionsSlice = createSlice({
             })
             .addCase(createSubscription.rejected, (state) => {
                 state.error = "Error creating subscription"
+            })
+            .addCase(deleteSubById.fulfilled, (state, action) => {
+                state.subscriptions = action.payload;
+                state.error = null;
+            })
+            .addCase(deleteSubById.rejected, (state) => {
+                state.error = 'Error removing subscription by ID';
             })
     }
 });

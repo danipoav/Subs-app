@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllPlans, getPlanById } from "./planThunk";
+import { deletePlanById, getAllPlans, getPlanById } from "./planThunk";
 import { Service } from "../services/serviceSlice";
 
 export interface Plan {
@@ -45,6 +45,12 @@ const planSlice = createSlice({
             .addCase(getPlanById.fulfilled, (state, action) => {
                 state.planById = action.payload;
                 state.error = null;
+            })
+            .addCase(deletePlanById.fulfilled, (state, action) => {
+                state.plans = action.payload;
+            })
+            .addCase(deletePlanById.rejected, (state) => {
+                state.error = 'Error removing plan by ID';
             })
     }
 });
