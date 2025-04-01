@@ -42,7 +42,7 @@ export const getAllPayments = createAsyncThunk<Payment[]>(
     }
 )
 
-export const deletPaymentBySubId = createAsyncThunk<Payment[], number>(
+export const deletPaymentBySubId = createAsyncThunk<string, number>(
     '/payments/deletePaymentBySubId', async (sub_id) => {
         try {
             const response = await fetcher(`payments/${sub_id}`, {

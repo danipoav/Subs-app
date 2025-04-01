@@ -21,8 +21,8 @@ export default function SubscriptionComponent() {
 
     const handleDeleteSubs = async (sub_id: number) => {
         try {
-            await dispatch(deletPaymentBySubId(sub_id)).unwrap();
-            await dispatch(deleteSubById(sub_id)).unwrap();
+            await dispatch(deletPaymentBySubId(sub_id));
+            await dispatch(deleteSubById(sub_id));
             await dispatch(getAllPayments())
             userId && await dispatch(getSubsByUserId(userId));
         } catch (error) {

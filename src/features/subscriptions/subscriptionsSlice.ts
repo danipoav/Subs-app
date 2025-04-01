@@ -46,8 +46,7 @@ const subscribtionsSlice = createSlice({
             .addCase(createSubscription.rejected, (state) => {
                 state.error = "Error creating subscription"
             })
-            .addCase(deleteSubById.fulfilled, (state, action) => {
-                state.subscriptions = action.payload;
+            .addCase(deleteSubById.fulfilled, (state) => {
                 state.error = null;
             })
             .addCase(deleteSubById.rejected, (state) => {

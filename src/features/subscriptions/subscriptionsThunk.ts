@@ -29,7 +29,7 @@ export const createSubscription = createAsyncThunk<Subscription, { planId: numbe
     }
 )
 
-export const deleteSubById = createAsyncThunk<Subscription[], number>(
+export const deleteSubById = createAsyncThunk<string, number>(
     '/subscription/deleteById', async (id) => {
         try {
             const response = fetcher(`subscribe/${id}`, {

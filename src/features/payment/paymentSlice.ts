@@ -46,8 +46,7 @@ const paymentSlice = createSlice({
             .addCase(getAllPayments.rejected, (state) => {
                 state.error = 'Failed getting all payments';
             })
-            .addCase(deletPaymentBySubId.fulfilled, (state, action) => {
-                state.payments = action.payload;
+            .addCase(deletPaymentBySubId.fulfilled, (state) => {
                 state.error = null;
             })
             .addCase(deletPaymentBySubId.rejected, (state) => {
