@@ -77,7 +77,7 @@ export default function ServicesSlider() {
 
                                     <div className="flex-1 text-left">
                                         <h3 className="text-2xl font-semibold">{service.name}</h3>
-                                        <p className="mt-2 mb-3 text-justify" style={{ color: "#8a8f98" }}>{service.description}</p>
+                                        <p className="mt-2 pb-10 text-justify" style={{ color: "#8a8f98" }}>{service.description}</p>
                                         <div className="flex justify-between">
                                             <select name="" id="" className=" cursor-pointer px-2 py-2 rounded-lg" onChange={(e) =>
                                                 setSelectedPlan((prev) => ({
@@ -89,7 +89,9 @@ export default function ServicesSlider() {
                                                     <option className=" bg-gray-500 cursor-pointer" key={plan.id} value={plan.id}>{plan.name}</option>
                                                 ))}
                                             </select>
-                                            <button disabled={subscribed} className=" cursor-pointer px-4 py-2 bg-white text-black rounded-lg text-1xl" onClick={() => status === 'authenticated' ? navigate(`/payment/${selectedPlan[currentService.id]}`) : navigate('/login')}>Subscribe</button>
+                                            <button disabled={subscribed} className={`cursor-pointer px-4 py-2  text-black rounded-lg text-1xl ${subscribed ? ' px-12 bg-gray-500' : ' bg-white'}`} onClick={() => status === 'authenticated' ? navigate(`/payment/${selectedPlan[currentService.id]}`) : navigate('/login')}>{subscribed ? <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="currentColor" fillRule="evenodd" d="M7 2a2 2 0 0 0-2 2v1h4V4a2 2 0 0 0-2-2M3 4v1a1.5 1.5 0 0 0-1.5 1.5v6A1.5 1.5 0 0 0 3 14h8a1.5 1.5 0 0 0 1.5-1.5v-6A1.5 1.5 0 0 0 11 5V4a4 4 0 1 0-8 0m4 6.75a1.25 1.25 0 1 0 0-2.5a1.25 1.25 0 0 0 0 2.5" clipRule="evenodd" /></svg>
+
+                                                : 'Subscribe'}</button>
                                         </div>
 
                                     </div>
