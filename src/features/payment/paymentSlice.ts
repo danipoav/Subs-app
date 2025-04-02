@@ -10,6 +10,12 @@ export interface Payment {
     state: 'Pagado' | 'Pendiente'
 }
 
+export interface PaymentUpdate {
+    payment_date: Date,
+    subscribe: number,
+    state: 'Pagado' | 'Pendiente'
+}
+
 interface PaymentState {
     error: string | null,
     payment: Payment[],

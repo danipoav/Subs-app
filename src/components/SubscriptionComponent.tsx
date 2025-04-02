@@ -2,14 +2,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../features/store"
 import { useEffect, useState } from "react";
 import { deleteSubById, getSubsByUserId } from "../features/subscriptions/subscriptionsThunk";
-import { useNavigate } from "react-router-dom";
-import { deletPaymentBySubId, getAllPayments } from "../features/payment/paymentThunk";
+import { deletPaymentBySubId, getAllPayments, updatePayment } from "../features/payment/paymentThunk";
 import UnsubscribeModal from "./UnsubscribeModal";
+import { PaymentUpdate } from "../features/payment/paymentSlice";
 
 export default function SubscriptionComponent() {
 
     const dispatch = useDispatch<AppDispatch>()
-    const navigate = useNavigate();
 
     const userId = useSelector((state: RootState) => state.auth.user?.id);
     const authStatus = useSelector((state: RootState) => state.auth.status);
@@ -32,6 +31,15 @@ export default function SubscriptionComponent() {
             await dispatch(deleteSubById(sub_id));
             await dispatch(getAllPayments())
             userId && await dispatch(getSubsByUserId(userId));
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handlePayNow = async (id: number, request: PaymentUpdate) => {
+        try {
+            await dispatch(updatePayment({ id, request }))
+            await dispatch(getAllPayments())
         } catch (error) {
             console.log(error)
         }
@@ -103,7 +111,11 @@ export default function SubscriptionComponent() {
                                     {payment?.state === 'Pendiente' && (
                                         <button
                                             className="bg-gray-300 text-black px-3 py-1 rounded-md text-sm hover:bg-white cursor-pointer"
-                                            onClick={() => navigate(`/payment?planId=${subs.plan.id}`)}
+                                            onClick={() => handlePayNow(payment.id, {
+                                                payment_date: new Date(),
+                                                subscribe: subs.id,
+                                                state: 'Pagado'
+                                            })}
                                         >
                                             Pay now
                                         </button>

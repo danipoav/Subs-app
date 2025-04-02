@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetcher } from "../api/fetcher";
-import { Payment } from "./paymentSlice";
+import { Payment, PaymentUpdate } from "./paymentSlice";
 
 export const createPayment = createAsyncThunk<string, { amount: number, payment_date: Date, subscribeId: number, state: string }>(
     '/payments/create', async (request) => {
@@ -51,6 +51,25 @@ export const deletPaymentBySubId = createAsyncThunk<string, number>(
             return response;
         } catch (error: any) {
             throw new Error(error.message || 'Error getting payments by subsId');
+        }
+    }
+)
+
+export const updatePayment = createAsyncThunk<string, { id: number, request: PaymentUpdate }>(
+    '/payments/update', async ({ id, request }) => {
+        try {
+            const response = fetcher(`payments/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    "state": request.state,
+                    "subscribeId": request.subscribe,
+                    "payment_date": request.payment_date
+                })
+            });
+            return response
+        } catch (error: any) {
+            throw new Error(error.message || 'Error getting payments by subsId');
+
         }
     }
 )
