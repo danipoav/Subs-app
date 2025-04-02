@@ -1,7 +1,7 @@
 
 export default function Hero2() {
     return (
-        <section className="w-full max-w-6xl mx-auto text-left py-10 pb-2 flex gap-10">
+        <section className="w-full max-w-6xl mx-auto text-left py-20 pb-2 flex gap-10">
             <div className=" ">
                 <h1 className="text-4xl md:text-4xl font-bold text-center">Subscription Management </h1>
                 <p className="mt-4 text-lg md:text-xl max-w-2xl text-justify" style={{ color: "#8a8f98" }}>

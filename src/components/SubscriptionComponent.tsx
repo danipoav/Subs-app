@@ -30,6 +30,31 @@ export default function SubscriptionComponent() {
         }
     }
 
+    if (subscriptions.length === 0) {
+        return (
+            <div className="w-full text-center py-20 text-gray-400 flex flex-col items-center">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="80"
+                    height="80"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className="mb-4 text-gray-500"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                </svg>
+                <h2 className="text-xl font-semibold">No subscriptions yet</h2>
+                <p className="text-sm mt-2">You haven’t subscribed to any service yet. Explore and pick your first one!</p>
+            </div>
+        );
+    }
+
     return (
         <section className="w-full flex flex-col items-center rounded-lg py-10 px-6">
             <h1 className="text-3xl font-bold mb-8 text-white">Subscriptions</h1>

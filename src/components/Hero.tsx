@@ -13,6 +13,13 @@ export default function Hero() {
         setTimeout(() => setIsVisible(true), 500)
     }, [])
 
+    const showServices = () => {
+        window.scrollTo({
+            top: 750,
+            behavior: 'smooth'
+        })
+    }
+
     return (
         <>
             <section className="w-full max-w-6xl mx-auto text-left pt-35 px-6">
@@ -24,7 +31,7 @@ export default function Hero() {
                         : 'Manage all your subscriptions in one place. Our platform helps you track, optimize, and automate your recurring services with ease. Never miss a payment again and stay in control of your expenses effortlessly.'}
                 </p>
                 <div className={`${isVisible ? " opacity-100 translate-y-0" : "opacity-0 translate-y-10"} pt-5 transition-all duration-1000 delay-700`}>
-                    <button className={`bg-gray-300 text-black px-4 py-2 rounded-md hover:bg-white transition-all cursor-pointer`}>
+                    <button onClick={showServices} className={`bg-gray-300 text-black px-4 py-2 rounded-md hover:bg-white transition-all cursor-pointer`}>
                         Watch Services
                     </button>
                 </div>
@@ -34,7 +41,7 @@ export default function Hero() {
                     "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
                 maskImage:
                     "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
-                height: "500px"
+                height: "465px"
             }} />
         </>
     )
