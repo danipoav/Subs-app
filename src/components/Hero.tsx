@@ -15,7 +15,7 @@ export default function Hero() {
 
     const showServices = () => {
         window.scrollTo({
-            top: 750,
+            top: 790,
             behavior: 'smooth'
         })
     }

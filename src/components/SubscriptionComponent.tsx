@@ -5,10 +5,13 @@ import { deleteSubById, getSubsByUserId } from "../features/subscriptions/subscr
 import { deletPaymentBySubId, getAllPayments, updatePayment } from "../features/payment/paymentThunk";
 import UnsubscribeModal from "./UnsubscribeModal";
 import { PaymentUpdate } from "../features/payment/paymentSlice";
+import { resetAuthState } from "../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function SubscriptionComponent() {
 
     const dispatch = useDispatch<AppDispatch>()
+    const navigate = useNavigate();
 
     const userId = useSelector((state: RootState) => state.auth.user?.id);
     const authStatus = useSelector((state: RootState) => state.auth.status);
@@ -18,13 +21,11 @@ export default function SubscriptionComponent() {
     const [showModal, setShowModal] = useState(false);
     const [selectedName, setSelectedName] = useState('');
     const [selectedId, setSelectedId] = useState<number | null>(null);
-    const [payingId, setPayingId] = useState<number | null>(null);
-    const [successId, setSuccessId] = useState<number | null>(null);
 
 
 
     useEffect(() => {
-        dispatch(getAllPayments())
+        dispatch(getAllPayments()).unwrap().catch(() => { dispatch(resetAuthState()); navigate('/login') })
         userId && dispatch(getSubsByUserId(userId));
     }, [])
 

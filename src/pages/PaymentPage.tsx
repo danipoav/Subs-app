@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from "../features/store";
 import { getPlanById } from "../features/plans/planThunk";
 import { createSubscription } from "../features/subscriptions/subscriptionsThunk";
 import { createPayment } from "../features/payment/paymentThunk";
+import { resetAuthState } from "../features/auth/authSlice";
 
 export default function PaymentPage() {
 
@@ -24,10 +25,11 @@ export default function PaymentPage() {
     const monthRenewalDate = nextMonth;
     const yearRenewalDate = nextYear;
 
-    //Changing date 
-
     useEffect(() => {
-        dispatch(getPlanById(Number(planId)));
+        dispatch(getPlanById(Number(planId))).unwrap().catch(() => {
+            dispatch(resetAuthState());
+            navigate("/login");
+        });
     }, [])
 
     const handlePayment = async (payState: 'Pagado' | 'Pendiente') => {
