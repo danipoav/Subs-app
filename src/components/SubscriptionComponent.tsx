@@ -18,6 +18,9 @@ export default function SubscriptionComponent() {
     const [showModal, setShowModal] = useState(false);
     const [selectedName, setSelectedName] = useState('');
     const [selectedId, setSelectedId] = useState<number | null>(null);
+    const [payingId, setPayingId] = useState<number | null>(null);
+    const [successId, setSuccessId] = useState<number | null>(null);
+
 
 
     useEffect(() => {
@@ -76,7 +79,7 @@ export default function SubscriptionComponent() {
         return (
             <>
                 <section className="w-full flex flex-col items-center rounded-lg py-10 px-6">
-                    <h1 className="text-3xl font-bold mb-8 text-white">Subscriptions</h1>
+                    <h1 className="text-3xl font-bold mb-8 text-white border-b border-gray-700 pb-4 w-full text-center">Subscriptions</h1>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full ">
                         {subscriptions.map((subs) => {
@@ -124,7 +127,7 @@ export default function SubscriptionComponent() {
                                         setSelectedId(subs.id);
                                         setSelectedName(subs.plan.service.name);
                                         setShowModal(true);
-                                    }} className=" text-red-800 cursor-pointer hover:text-red-600"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 17 17"><path fill="currentColor" fillRule="evenodd" d="m12.566 8l3.045-3.044c.42-.421.42-1.103 0-1.522L12.566.389a1.08 1.08 0 0 0-1.523 0L7.999 3.433L4.955.389a1.08 1.08 0 0 0-1.523 0L.388 3.434a1.074 1.074 0 0 0-.001 1.522L3.431 8L.387 11.044a1.075 1.075 0 0 0 .001 1.523l3.044 3.044c.42.421 1.102.421 1.523 0l3.044-3.044l3.044 3.044a1.076 1.076 0 0 0 1.523 0l3.045-3.044c.42-.421.42-1.103 0-1.523z" /></svg></button>
+                                    }} className=" text-red-800 cursor-pointer hover:text-red-600 text-xl">🗑️</button>
                                 </div>
                             )
                         })}
