@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom"
 import { AppDispatch, RootState } from "../features/store";
@@ -18,6 +18,7 @@ export default function PaymentPage() {
     const startDate = new Date()
     const nextMonth = new Date();
     const nextYear = new Date();
+    const [isVisible, setIsVisible] = useState(false);
 
     nextMonth.setMonth(nextMonth.getMonth() + 1)
     nextYear.setFullYear(nextYear.getFullYear() + 1)
@@ -30,6 +31,7 @@ export default function PaymentPage() {
             dispatch(resetAuthState());
             navigate("/login");
         });
+        setTimeout(() => setIsVisible(true), 200)
     }, [])
 
     const handlePayment = async (payState: 'Pagado' | 'Pendiente') => {
@@ -55,8 +57,8 @@ export default function PaymentPage() {
     }
 
     return (
-        <div className="min-h-screen text-white flex items-center justify-center px-4" style={{ background: "#08090a" }}>
-            <div className="bg-black p-8 rounded-xl shadow-lg w-full max-w-md text-center space-y-6">
+        <div className={`min-h-screen text-white flex items-center justify-center px-4`} style={{ background: "#08090a" }}>
+            <div className={`bg-black p-8 rounded-xl shadow-lg w-full max-w-md text-center space-y-6 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : " opacity-0 translate-x-10"}`}>
                 <img src={plan?.service.logo} alt={plan?.service.name} className="w-20 h-20 mx-auto" />
                 <h2 className="text-2xl font-bold">{plan?.service.name} – {plan?.name}</h2>
                 <p className="text-gray-400">You’re about to subscribe to the <span className="text-white font-semibold">{plan?.name}</span> plan for <span className="text-white">${plan?.price}</span>.</p>

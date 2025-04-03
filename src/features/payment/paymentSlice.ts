@@ -5,13 +5,13 @@ import { deletPaymentBySubId, getAllPayments, getPaymentBySubsId } from "./payme
 export interface Payment {
     id: number,
     amount: number,
-    payment_date: Date,
+    paymentDate: string,
     subscribe: Subscription,
     state: 'Pagado' | 'Pendiente'
 }
 
 export interface PaymentUpdate {
-    payment_date: Date,
+    paymentDate: Date,
     subscribe: number,
     state: 'Pagado' | 'Pendiente'
 }

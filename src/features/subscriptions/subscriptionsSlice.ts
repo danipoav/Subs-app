@@ -11,8 +11,12 @@ export interface SubscriptionCreate {
     renewal_date: Date
 }
 
-export interface Subscription extends SubscriptionCreate {
-    id: number
+export interface Subscription {
+    id: number,
+    plan: Plan,
+    user: User
+    startDate: string,
+    renewalDate: string
 }
 
 interface SubscriptioState {

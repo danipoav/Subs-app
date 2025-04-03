@@ -22,10 +22,8 @@ export default function SubscriptionComponent() {
     const [selectedName, setSelectedName] = useState('');
     const [selectedId, setSelectedId] = useState<number | null>(null);
 
-
-
     useEffect(() => {
-        dispatch(getAllPayments()).unwrap().catch(() => { dispatch(resetAuthState()); navigate('/login') })
+        dispatch(getAllPayments()).unwrap().catch(() => { dispatch(resetAuthState()); navigate('/') })
         userId && dispatch(getSubsByUserId(userId));
     }, [])
 
@@ -84,7 +82,6 @@ export default function SubscriptionComponent() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full ">
                         {subscriptions.map((subs) => {
-
                             const payment = payments.find((p) => p.subscribe.id === subs.id)
 
                             return (
@@ -97,8 +94,8 @@ export default function SubscriptionComponent() {
                                     <div className="flex-1">
                                         <h2 className="text-xl font-semibold">{subs.plan.service.name} – {subs.plan.name}</h2>
                                         <p className="text-sm text-gray-400">
-                                            Starts: {new Date(subs.start_date).toLocaleDateString()} | Renewal:{" "}
-                                            {new Date(subs.renewal_date).toLocaleDateString()}
+                                            Starts: {subs.startDate} | Renewal:{" "}
+                                            {subs.renewalDate}
                                         </p>
                                         {payment && (
                                             <span
@@ -116,7 +113,7 @@ export default function SubscriptionComponent() {
                                         <button
                                             className="bg-gray-300 text-black px-3 py-1 rounded-md text-sm hover:bg-white cursor-pointer"
                                             onClick={() => handlePayNow(payment.id, {
-                                                payment_date: new Date(),
+                                                paymentDate: new Date(),
                                                 subscribe: subs.id,
                                                 state: 'Pagado'
                                             })}

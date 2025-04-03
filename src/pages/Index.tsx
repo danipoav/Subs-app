@@ -1,4 +1,5 @@
 import Footer from "../components/Footer";
+import GraphicComponent from "../components/GraphicComponent";
 import Hero from "../components/Hero";
 import Hero2 from "../components/Hero2";
 import Navbar from "../components/Navbar";
@@ -19,6 +20,7 @@ export default function Index() {
         <div className="w-full max-w-6xl px-6">
           <ServicesSlider />
           <SubscriptionComponent />
+          <GraphicComponent />
           <Hero2 />
           <Tech />
         </div>
