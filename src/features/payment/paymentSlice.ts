@@ -7,13 +7,13 @@ export interface Payment {
     amount: number,
     paymentDate: string,
     subscribe: Subscription,
-    state: 'Pagado' | 'Pendiente'
+    state: 'Paid' | 'Pending'
 }
 
 export interface PaymentUpdate {
-    paymentDate: Date,
+    payment_date: Date,
     subscribe: number,
-    state: 'Pagado' | 'Pendiente'
+    state: 'Paid' | 'Pending'
 }
 
 interface PaymentState {

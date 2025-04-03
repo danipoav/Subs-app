@@ -36,7 +36,7 @@ export default function PaymentPage() {
         setTimeout(() => setIsVisible(true), 200)
     }, [])
 
-    const handlePayment = async (payState: 'Pagado' | 'Pendiente') => {
+    const handlePayment = async (payState: 'Paid' | 'Pending') => {
 
         if (plan && user) {
             const result = await dispatch(createSubscription({
@@ -55,7 +55,7 @@ export default function PaymentPage() {
                 state: payState
             }))
 
-            if (payState === 'Pagado') {
+            if (payState === 'Paid') {
                 toast.success('Subscription created successfully')
             } else {
                 toast.warning('Subscription created successfully, Pending to pay')
@@ -74,13 +74,13 @@ export default function PaymentPage() {
                 <p className="text-sm text-gray-500">Billing cycle: {plan?.period}</p>
 
                 <button
-                    onClick={() => handlePayment("Pagado")}
+                    onClick={() => handlePayment("Paid")}
                     className="w-full bg-white text-black py-2 rounded-md mb-3 cursor-pointer hover:bg-gray-200 transition"
                 >
                     Confirm Payment
                 </button>
                 <button
-                    onClick={() => handlePayment("Pendiente")}
+                    onClick={() => handlePayment("Pending")}
                     className="w-full border border-gray-500 text-white py-2 rounded-md cursor-pointer hover:bg-gray-950 transition"
                 >
                     Pay Later

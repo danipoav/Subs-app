@@ -16,7 +16,7 @@ export default function GraphicComponent() {
     );
 
     const userPayments = useMemo(
-        () => payments.filter(p => p.state === "Pagado" && userSubsId.includes(p.subscribe.id)),
+        () => payments.filter(p => p.state === "Paid" && userSubsId.includes(p.subscribe.id)),
         [payments, userSubsId]
     )
 
@@ -41,7 +41,7 @@ export default function GraphicComponent() {
         } else {
             return (
                 <>
-                    <h1 className=" text-3xl text-center w-full border-b border-gray-700 font-semibold text-white mt-10 pb-4">Spended</h1>
+                    <h1 className=" text-3xl text-center w-full border-b border-gray-700 font-semibold text-white mt-10 pb-4">Money Spended</h1>
                     <div className="bg-black p-6 rounded-lg text-white w-full mt-8">
                         <ResponsiveContainer width="100%" height={300}>
                             <BarChart data={spendingByService} barSize={350}>

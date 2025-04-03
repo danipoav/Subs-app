@@ -102,7 +102,7 @@ export default function SubscriptionComponent() {
                                         </p>
                                         {payment && (
                                             <span
-                                                className={`inline-block mt-2 text-xs font-medium px-3 py-1 rounded-full ${payment.state === 'Pagado'
+                                                className={`inline-block mt-2 text-xs font-medium px-3 py-1 rounded-full ${payment.state === 'Paid'
                                                     ? "bg-green-600 text-white"
                                                     : "bg-yellow-500 text-black"
                                                     }`}
@@ -112,13 +112,13 @@ export default function SubscriptionComponent() {
                                         )}
                                     </div>
 
-                                    {payment?.state === 'Pendiente' && (
+                                    {payment?.state === 'Pending' && (
                                         <button
                                             className="bg-gray-300 text-black px-3 py-1 rounded-md text-sm hover:bg-white cursor-pointer"
                                             onClick={() => handlePayNow(payment.id, {
-                                                paymentDate: new Date(),
+                                                payment_date: new Date(),
                                                 subscribe: subs.id,
-                                                state: 'Pagado'
+                                                state: 'Paid'
                                             })}
                                         >
                                             Pay now

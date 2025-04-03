@@ -72,7 +72,7 @@ export default function ServicesSlider() {
                                         }`}
                                 >
 
-                                    <img src={service.logo} alt="Service" className="w-40 h-40 object-contain" />
+                                    <img src={service.logo} alt="Service" className={` w-40 h-40 object-contain`} />
 
 
                                     <div className="flex-1 text-left">
