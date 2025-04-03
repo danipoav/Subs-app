@@ -7,6 +7,8 @@ import UnsubscribeModal from "./UnsubscribeModal";
 import { PaymentUpdate } from "../features/payment/paymentSlice";
 import { resetAuthState } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 export default function SubscriptionComponent() {
 
@@ -33,6 +35,7 @@ export default function SubscriptionComponent() {
             await dispatch(deleteSubById(sub_id));
             await dispatch(getAllPayments())
             userId && await dispatch(getSubsByUserId(userId));
+            toast.success("Subscription removed successfully!")
         } catch (error) {
             console.log(error)
         }

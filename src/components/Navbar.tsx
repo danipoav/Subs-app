@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch, RootState } from "../features/store";
 import { logout } from "../features/auth/authSlice";
+import { toast } from "react-toastify";
 
 
 export default function Navbar() {
@@ -13,6 +14,7 @@ export default function Navbar() {
     const handleLogOut = () => {
         dispatch(logout());
         window.location.reload();
+        toast.success('Godbye!')
     }
 
     const handleBeginning = () => {

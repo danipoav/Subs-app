@@ -6,6 +6,8 @@ import { getPlanById } from "../features/plans/planThunk";
 import { createSubscription } from "../features/subscriptions/subscriptionsThunk";
 import { createPayment } from "../features/payment/paymentThunk";
 import { resetAuthState } from "../features/auth/authSlice";
+import { toast } from "react-toastify";
+
 
 export default function PaymentPage() {
 
@@ -52,6 +54,12 @@ export default function PaymentPage() {
                 subscribeId: subId,
                 state: payState
             }))
+
+            if (payState === 'Pagado') {
+                toast.success('Subscription created successfully')
+            } else {
+                toast.warning('Subscription created successfully, Pending to pay')
+            }
         }
         navigate('/');
     }

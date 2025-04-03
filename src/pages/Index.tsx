@@ -6,6 +6,8 @@ import Navbar from "../components/Navbar";
 import ServicesSlider from "../components/ServicesSlider";
 import SubscriptionComponent from "../components/SubscriptionComponent";
 import Tech from "../components/Tech";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 export default function Index() {

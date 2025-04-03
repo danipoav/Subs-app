@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getLoginToken, getRegisterToken } from "./authThunk";
+import { toast } from "react-toastify";
 
 export interface User {
     id: number,
@@ -46,6 +47,7 @@ const authSlice = createSlice({
                 state.error = null;
                 state.status = 'authenticated'
                 state.user = action.payload.user;
+                toast.success('Welcome!')
             })
             .addCase(getLoginToken.pending, (state) => {
                 state.error = null;
