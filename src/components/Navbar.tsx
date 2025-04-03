@@ -11,7 +11,6 @@ export default function Navbar() {
     const dispatch = useDispatch<AppDispatch>();
 
     const handleLogOut = () => {
-        localStorage.removeItem('token');
         dispatch(logout());
         window.location.reload();
     }
