@@ -40,8 +40,8 @@ export default function PaymentPage() {
 
         if (plan && user) {
             const result = await dispatch(createSubscription({
-                planId: plan.id,
-                userId: user.id,
+                plan_id: plan.id,
+                user_id: user.id,
                 start_date: startDate,
                 renewal_date: plan.name === 'Mensual' ? monthRenewalDate : yearRenewalDate
             })).unwrap();
@@ -51,7 +51,7 @@ export default function PaymentPage() {
             dispatch(createPayment({
                 amount: plan.price,
                 payment_date: startDate,
-                subscribeId: subId,
+                subscribe_id: subId,
                 state: payState
             }))
 

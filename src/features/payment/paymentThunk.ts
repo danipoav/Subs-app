@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetcher } from "../api/fetcher";
 import { Payment, PaymentUpdate } from "./paymentSlice";
 
-export const createPayment = createAsyncThunk<string, { amount: number, payment_date: Date, subscribeId: number, state: string }>(
+export const createPayment = createAsyncThunk<string, { amount: number, payment_date: Date, subscribe_id: number, state: string }>(
     '/payments/create', async (request) => {
         try {
             const response = await fetcher('payments', {
@@ -62,7 +62,7 @@ export const updatePayment = createAsyncThunk<string, { id: number, request: Pay
                 method: 'PUT',
                 body: JSON.stringify({
                     "state": request.state,
-                    "subscribeId": request.subscribe,
+                    "subscribe_id": request.subscription,
                     "payment_date": request.payment_date
                 })
             });

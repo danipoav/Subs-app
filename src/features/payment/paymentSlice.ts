@@ -6,13 +6,13 @@ export interface Payment {
     id: number,
     amount: number,
     paymentDate: string,
-    subscribe: Subscription,
+    subscription: Subscription,
     state: 'Paid' | 'Pending'
 }
 
 export interface PaymentUpdate {
     payment_date: Date,
-    subscribe: number,
+    subscription: number,
     state: 'Paid' | 'Pending'
 }
 

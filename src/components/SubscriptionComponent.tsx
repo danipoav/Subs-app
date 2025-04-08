@@ -85,8 +85,9 @@ export default function SubscriptionComponent() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full ">
                         {subscriptions.map((subs) => {
-                            const payment = payments.find((p) => p.subscribe.id === subs.id)
-
+                            const payment = payments.find((p) => p.subscription.id === subs.id)
+                            console.log(payments)
+                            console.log(subs)
                             return (
                                 <div key={subs.id} className="bg-black p-6 rounded-lg shadow-md text-white flex items-center gap-4">
                                     <img
@@ -117,7 +118,7 @@ export default function SubscriptionComponent() {
                                             className="bg-gray-300 text-black px-3 py-1 rounded-md text-sm hover:bg-white cursor-pointer"
                                             onClick={() => handlePayNow(payment.id, {
                                                 payment_date: new Date(),
-                                                subscribe: subs.id,
+                                                subscription: subs.id,
                                                 state: 'Paid'
                                             })}
                                         >

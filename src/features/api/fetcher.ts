@@ -1,5 +1,5 @@
 export const fetcher = async <T = any>(endpoint: string, options: RequestInit = {}): Promise<T> => {
-    const url = 'http://localhost:8080/api';
+    const url = 'http://localhost:3000/api';
     const token = localStorage.getItem('token');
 
     try {

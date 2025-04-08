@@ -1,6 +1,6 @@
 export const fetcherNoToken = async <T = any>(endpoint: String, options: RequestInit = {}): Promise<T> => {
 
-    const url = 'http://localhost:8080/api';
+    const url = 'http://localhost:3000/api';
 
     try {
         const response = await fetch(`${url}/${endpoint}`, {

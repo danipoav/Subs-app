@@ -5,7 +5,7 @@ import { Subscription } from "./subscriptionsSlice";
 export const getSubsByUserId = createAsyncThunk<Subscription[], number>(
     '/subscription/getByUserId', async (userId) => {
         try {
-            const response = await fetcher(`subscribe/${userId}`, {
+            const response = await fetcher(`subscriptions/${userId}`, {
                 method: 'GET'
             })
             return response
@@ -15,10 +15,10 @@ export const getSubsByUserId = createAsyncThunk<Subscription[], number>(
     }
 )
 
-export const createSubscription = createAsyncThunk<Subscription, { planId: number, userId: number, start_date: Date, renewal_date: Date }>(
+export const createSubscription = createAsyncThunk<Subscription, { plan_id: number, user_id: number, start_date: Date, renewal_date: Date }>(
     '/subscription/create', async (request) => {
         try {
-            const response = await fetcher('subscribe', {
+            const response = await fetcher('subscriptions', {
                 method: 'POST',
                 body: JSON.stringify(request)
             })
@@ -32,7 +32,7 @@ export const createSubscription = createAsyncThunk<Subscription, { planId: numbe
 export const deleteSubById = createAsyncThunk<string, number>(
     '/subscription/deleteById', async (id) => {
         try {
-            const response = fetcher(`subscribe/${id}`, {
+            const response = fetcher(`subscriptions/${id}`, {
                 method: 'DELETE'
             })
             return response;
