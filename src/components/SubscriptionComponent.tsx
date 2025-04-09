@@ -86,8 +86,6 @@ export default function SubscriptionComponent() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full ">
                         {subscriptions.map((subs) => {
                             const payment = payments.find((p) => p.subscription.id === subs.id)
-                            console.log(payments)
-                            console.log(subs)
                             return (
                                 <div key={subs.id} className="bg-black p-6 rounded-lg shadow-md text-white flex items-center gap-4">
                                     <img
@@ -98,8 +96,8 @@ export default function SubscriptionComponent() {
                                     <div className="flex-1">
                                         <h2 className="text-xl font-semibold">{subs.plan.service.name} – {subs.plan.name}</h2>
                                         <p className="text-sm text-gray-400">
-                                            Starts: {subs.startDate} | Renewal:{" "}
-                                            {subs.renewalDate}
+                                            Starts: {new Date(subs.start_date).toLocaleDateString('en-US')} | Renewal:{" "}
+                                            {new Date(subs.renewal_date).toLocaleDateString('en-US')}
                                         </p>
                                         {payment && (
                                             <span

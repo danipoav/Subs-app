@@ -15,8 +15,8 @@ export interface Subscription {
     id: number,
     plan: Plan,
     user: User
-    startDate: string,
-    renewalDate: string
+    start_date: string,
+    renewal_date: string
 }
 
 interface SubscriptioState {
