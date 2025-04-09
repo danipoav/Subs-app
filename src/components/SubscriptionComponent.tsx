@@ -85,7 +85,20 @@ export default function SubscriptionComponent() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full ">
                         {subscriptions.map((subs) => {
+
+                            const today = new Date();
+                            const renewalDate = new Date(subs.renewal_date);
+
+                            const timeDiff = renewalDate.getTime() - today.getTime();
+                            const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
                             const payment = payments.find((p) => p.subscription.id === subs.id)
+
+                            if (payment?.state === 'Pending' && renewalDate.getTime() < today.getTime()) {
+                                handleDeleteSubs(subs.id);
+                                return null;
+                            }
+
                             return (
                                 <div key={subs.id} className="bg-black p-6 rounded-lg shadow-md text-white flex items-center gap-4">
                                     <img
@@ -110,6 +123,14 @@ export default function SubscriptionComponent() {
                                             </span>
                                         )}
                                     </div>
+
+                                    {
+                                        daysLeft <= 7 && daysLeft > 0 && (
+                                            <p className="text-yellow-400 text-xs mt-2">
+                                                Your subscription expires in {daysLeft} {daysLeft === 1 ? 'day' : 'days'}
+                                            </p>
+                                        )
+                                    }
 
                                     {payment?.state === 'Pending' && (
                                         <button
