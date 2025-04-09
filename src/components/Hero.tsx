@@ -50,7 +50,7 @@ export default function Hero() {
       <img 
         src={heroImage} 
         alt="Heroimg" 
-        className={`w-full delay-1200 duration-1000 transition-all object-cover  ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`} 
+        className={`w-full delay-1200 duration-1000 transition-all   ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`} 
         style={{
           WebkitMaskImage:
             "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",

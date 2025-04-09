@@ -46,7 +46,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="hidden top-0 left-0 w-full bg-black bg-opacity-80 backdrop-blur-md z-10 border-b border-gray-700 " style={{ color: "#f7f8f8" }}>
+            <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-80 backdrop-blur-md z-10 border-b border-gray-700 " style={{ color: "#f7f8f8" }}>
                 <div className="max-w-6xl mx-auto px-6 flex justify-between items-center h-16">
                     <div onClick={handleBeginning} className=" text-xl font-bold text-white flex cursor-pointer"><PiSubsetProperOfFill size={30} />Sub-Lin</div>
                     <div className=" md:flex space-x-5">
