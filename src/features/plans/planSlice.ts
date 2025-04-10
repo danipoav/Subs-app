@@ -40,7 +40,6 @@ const planSlice = createSlice({
             })
             .addCase(getAllPlans.rejected, (state) => {
                 state.error = "Error fetching plans";
-                state.loading = false;
             })
             .addCase(getPlanById.fulfilled, (state, action) => {
                 state.planById = action.payload;

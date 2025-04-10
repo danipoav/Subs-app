@@ -13,14 +13,16 @@ interface AuthState {
     token: null | string,
     error: null | string,
     status: 'idle' | 'error' | 'loading' | 'authenticated';
-    user: null | User
+    user: null | User,
+    loading: boolean
 }
 
 const initialState: AuthState = {
     token: localStorage.getItem('token'),
     error: null,
     status: localStorage.getItem('token') ? 'authenticated' : 'error',
-    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!) : null
+    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!) : null,
+    loading: false
 }
 
 const authSlice = createSlice({
@@ -33,6 +35,7 @@ const authSlice = createSlice({
             state.status = 'idle';
             state.error = null;
             state.user = null;
+            state.loading = false;
         },
         resetAuthState: (state) => {
             state.error = null;
@@ -46,25 +49,35 @@ const authSlice = createSlice({
                 state.error = null;
                 state.status = 'authenticated'
                 state.user = action.payload.user;
+                state.loading = false;
                 toast.success('Welcome!')
             })
             .addCase(getLoginToken.pending, (state) => {
                 state.error = null;
                 state.status = 'loading'
+                state.loading = true;
             })
             .addCase(getLoginToken.rejected, (state) => {
                 state.error = "Incorrect Credentials";
                 state.status = 'error';
+                state.loading = false
             })
             .addCase(getRegisterToken.fulfilled, (state, action) => {
                 state.status = 'authenticated';
                 state.token = action.payload.token;
                 state.error = null;
                 state.user = action.payload.user;
+                state.loading = false
             })
             .addCase(getRegisterToken.rejected, (state) => {
                 state.error = 'Email already exists';
                 state.status = 'error'
+                state.loading = false
+            })
+            .addCase(getRegisterToken.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+                state.status = 'loading'
             })
     }
 })

@@ -36,7 +36,6 @@ const serviceSlice = createSlice({
             })
             .addCase(getAllServices.rejected, (state) => {
                 state.error = "Error fetching services";
-                state.loading = false;
             })
     }
 });

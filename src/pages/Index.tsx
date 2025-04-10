@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Footer from "../components/Footer";
 import GraphicComponent from "../components/GraphicComponent";
 import Hero from "../components/Hero";
@@ -7,10 +8,13 @@ import ServicesSlider from "../components/ServicesSlider";
 import SubscriptionComponent from "../components/SubscriptionComponent";
 import Tech from "../components/Tech";
 import 'react-toastify/dist/ReactToastify.css';
+import { RootState } from "../features/store";
 
 
 
 export default function Index() {
+
+  const status = useSelector((state: RootState) => state.auth.status)
 
   return (
     <>
@@ -21,8 +25,9 @@ export default function Index() {
         <Hero />
         <div className="w-full max-w-6xl px-6">
           <ServicesSlider />
-          <SubscriptionComponent />
-          <GraphicComponent />
+          {status === 'authenticated' ? (<>
+            <SubscriptionComponent />
+            <GraphicComponent /></>) : ''}
           <Hero2 />
           <Tech />
         </div>
