@@ -7,9 +7,10 @@ import { toast } from "react-toastify";
 
 interface NavbarProps {
     servicesRef: React.RefObject<HTMLDivElement | null>;
+    manageRef: React.RefObject<HTMLDivElement | null>;
 }
 
-export default function Navbar({ servicesRef }: NavbarProps) {
+export default function Navbar({ servicesRef, manageRef }: NavbarProps) {
     const navigate = useNavigate();
     const { token } = useSelector((state: RootState) => state.auth);
     const dispatch = useDispatch<AppDispatch>();
@@ -38,6 +39,10 @@ export default function Navbar({ servicesRef }: NavbarProps) {
         })
     }
 
+    const manageScroll = () => {
+        manageRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+
     return (
         <>
             <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-80 backdrop-blur-md z-10 border-b border-gray-700 " style={{ color: "#f7f8f8" }}>
@@ -46,7 +51,7 @@ export default function Navbar({ servicesRef }: NavbarProps) {
                     <div className=" md:flex space-x-5">
                         <a onClick={handleServices} className="text-gray-300 hover:text-white transition cursor-pointer rounded-lg py-1 px-2 hover:bg-gray-900">Services</a>
                         <a onClick={handleSubs} className="text-gray-300 hover:text-white transition cursor-pointer rounded-lg py-1 px-2 hover:bg-gray-900">Subscriptions</a>
-                        <a href="#contact" className="text-gray-300 hover:text-white transition cursor-pointer rounded-lg py-1 px-2 hover:bg-gray-900">Contact</a>
+                        <a onClick={manageScroll} className="text-gray-300 hover:text-white transition cursor-pointer rounded-lg py-1 px-2 hover:bg-gray-900">Management</a>
                     </div>
                     <div>
                         {token ?
