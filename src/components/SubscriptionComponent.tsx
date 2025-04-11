@@ -9,8 +9,11 @@ import { resetAuthState } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+interface SubsProps {
+    ref: React.RefObject<HTMLDivElement | null>;
+}
 
-export default function SubscriptionComponent() {
+export default function SubscriptionComponent({ ref }: SubsProps) {
 
     const dispatch = useDispatch<AppDispatch>()
     const navigate = useNavigate();
@@ -81,7 +84,7 @@ export default function SubscriptionComponent() {
 
         return (
             <>
-                <section className="w-full flex flex-col items-center rounded-lg py-10 px-6">
+                <section ref={ref} className="scroll-mt-16 w-full flex flex-col items-center rounded-lg py-10 px-6">
                     <h1 className="text-3xl font-bold mb-8 text-white border-b border-gray-700 pb-4 w-full text-center">Subscriptions</h1>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full ">

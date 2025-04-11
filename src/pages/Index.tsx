@@ -16,18 +16,19 @@ export default function Index() {
   const status = useSelector((state: RootState) => state.auth.status)
   const servicesRef = useRef<HTMLDivElement>(null);
   const manageRef = useRef<HTMLDivElement>(null);
+  const subsRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
       <div className=" min-h-screen text-white flex flex-col items-center" style={{ background: "#08090a" }}>
         <div className=" w-full max-w-6xl px-6">
-          <Navbar servicesRef={servicesRef} manageRef={manageRef} />
+          <Navbar servicesRef={servicesRef} manageRef={manageRef} subsRef={subsRef}/>
         </div>
-        <Hero />
+        <Hero servicesRef={servicesRef} />
         <div className="w-full max-w-6xl px-6">
           <ServicesSlider ref={servicesRef} />
           {status === 'authenticated' ? (<>
-            <SubscriptionComponent />
+            <SubscriptionComponent ref={subsRef}/>
             <GraphicComponent /></>) : ''}
           <Hero2 ref={manageRef} />
           <Tech />

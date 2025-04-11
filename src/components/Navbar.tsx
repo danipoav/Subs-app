@@ -8,11 +8,12 @@ import { toast } from "react-toastify";
 interface NavbarProps {
     servicesRef: React.RefObject<HTMLDivElement | null>;
     manageRef: React.RefObject<HTMLDivElement | null>;
+    subsRef: React.RefObject<HTMLDivElement | null>;
 }
 
-export default function Navbar({ servicesRef, manageRef }: NavbarProps) {
+export default function Navbar({ servicesRef, manageRef, subsRef }: NavbarProps) {
     const navigate = useNavigate();
-    const { token } = useSelector((state: RootState) => state.auth);
+    const { token, status } = useSelector((state: RootState) => state.auth);
     const dispatch = useDispatch<AppDispatch>();
 
     const handleLogOut = () => {
@@ -33,10 +34,7 @@ export default function Navbar({ servicesRef, manageRef }: NavbarProps) {
     }
 
     const handleSubs = () => {
-        window.scrollTo({
-            top: 1280,
-            behavior: 'smooth'
-        })
+        subsRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
 
     const manageScroll = () => {
@@ -50,7 +48,9 @@ export default function Navbar({ servicesRef, manageRef }: NavbarProps) {
                     <div onClick={handleBeginning} className=" text-xl font-bold text-white flex cursor-pointer"><PiSubsetProperOfFill size={30} />Sub-Lin</div>
                     <div className=" md:flex space-x-5">
                         <a onClick={handleServices} className="text-gray-300 hover:text-white transition cursor-pointer rounded-lg py-1 px-2 hover:bg-gray-900">Services</a>
-                        <a onClick={handleSubs} className="text-gray-300 hover:text-white transition cursor-pointer rounded-lg py-1 px-2 hover:bg-gray-900">Subscriptions</a>
+                        {status === 'authenticated' ?
+                            <a onClick={handleSubs} className="text-gray-300 hover:text-white transition cursor-pointer rounded-lg py-1 px-2 hover:bg-gray-900">Subscriptions</a>
+                            : ''}
                         <a onClick={manageScroll} className="text-gray-300 hover:text-white transition cursor-pointer rounded-lg py-1 px-2 hover:bg-gray-900">Management</a>
                     </div>
                     <div>
