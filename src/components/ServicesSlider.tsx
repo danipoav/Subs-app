@@ -5,7 +5,11 @@ import { getAllServices } from "../features/services/serviceThunk";
 import { getAllPlans } from "../features/plans/planThunk";
 import { useNavigate } from "react-router-dom";
 
-export default function ServicesSlider() {
+interface NavbarProps {
+    ref: React.RefObject<HTMLDivElement | null>;
+}
+
+export default function ServicesSlider({ ref }: NavbarProps) {
 
     const services = useSelector((state: RootState) => state.service.services);
     const plans = useSelector((state: RootState) => state.plan.plans);
@@ -56,13 +60,13 @@ export default function ServicesSlider() {
 
     return (
         <>
-            <section className=" w-full flex flex-col items-center py-16 pt-0 ">
+            <section ref={ref} className=" scroll-mt-20 w-full flex flex-col items-center py-16 pt-0 ">
                 {planLoading || serviceLoading ?
                     <svg className="svgLoad" viewBox="25 25 50 50">
                         <circle className="circleLoad" r="20" cy="50" cx="50"></circle>
                     </svg> :
                     <div className=" relative w-full  overflow-hidden">
-                        <div
+                        <div 
                             className="flex transition-transform duration-700 ease-in-out"
                             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                         >

@@ -47,9 +47,9 @@ const authSlice = createSlice({
             .addCase(getLoginToken.fulfilled, (state, action) => {
                 state.token = action.payload.token;
                 state.error = null;
-                state.status = 'authenticated'
                 state.user = action.payload.user;
                 state.loading = false;
+                state.status = 'authenticated'
                 toast.success('Welcome!')
             })
             .addCase(getLoginToken.pending, (state) => {

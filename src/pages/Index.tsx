@@ -9,22 +9,24 @@ import SubscriptionComponent from "../components/SubscriptionComponent";
 import Tech from "../components/Tech";
 import 'react-toastify/dist/ReactToastify.css';
 import { RootState } from "../features/store";
+import { useRef } from "react";
 
 
 
 export default function Index() {
 
   const status = useSelector((state: RootState) => state.auth.status)
+  const servicesRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
       <div className=" min-h-screen text-white flex flex-col items-center" style={{ background: "#08090a" }}>
         <div className=" w-full max-w-6xl px-6">
-          <Navbar />
+          <Navbar servicesRef={servicesRef}/>
         </div>
         <Hero />
         <div className="w-full max-w-6xl px-6">
-          <ServicesSlider />
+          <ServicesSlider ref={servicesRef}/>
           {status === 'authenticated' ? (<>
             <SubscriptionComponent />
             <GraphicComponent /></>) : ''}

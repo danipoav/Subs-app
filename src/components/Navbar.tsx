@@ -4,18 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { AppDispatch, RootState } from "../features/store";
 import { logout } from "../features/auth/authSlice";
 import { toast } from "react-toastify";
-import { useState } from "react";
 
+interface NavbarProps {
+    servicesRef: React.RefObject<HTMLDivElement | null>;
+}
 
-export default function Navbar() {
+export default function Navbar({ servicesRef }: NavbarProps) {
     const navigate = useNavigate();
     const { token } = useSelector((state: RootState) => state.auth);
     const dispatch = useDispatch<AppDispatch>();
-    const [menuOpen, setMenuOpen] = useState(false);
-
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
 
     const handleLogOut = () => {
         dispatch(logout());
@@ -31,10 +28,7 @@ export default function Navbar() {
     }
 
     const handleServices = () => {
-        window.scrollTo({
-            top: 790,
-            behavior: 'smooth'
-        })
+        servicesRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
 
     const handleSubs = () => {

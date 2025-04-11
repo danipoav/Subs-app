@@ -25,7 +25,8 @@ export default function SubscriptionComponent() {
     const [selectedId, setSelectedId] = useState<number | null>(null);
 
     useEffect(() => {
-        dispatch(getAllPayments()).unwrap().catch(() => { dispatch(resetAuthState()); navigate('/') })
+        // dispatch(getAllPayments()).unwrap().catch(() => { dispatch(resetAuthState()); navigate('/') })
+        dispatch(getAllPayments())
         userId && dispatch(getSubsByUserId(userId));
     }, [])
 
