@@ -54,7 +54,7 @@ export default function Navbar({ servicesRef, manageRef, subsRef }: NavbarProps)
                         <a onClick={manageScroll} className="text-gray-300 hover:text-white transition cursor-pointer rounded-lg py-1 px-2 hover:bg-gray-900">Management</a>
                     </div>
                     <div>
-                        {token ?
+                        {status === 'authenticated' ?
                             (<button className="flex justify-center align-middle cursor-pointer text-gray-300 hover:text-white" onClick={handleLogOut}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><path strokeDasharray="48" strokeDashoffset="48" d="M16 5v-1c0 -0.55 -0.45 -1 -1 -1h-9c-0.55 0 -1 0.45 -1 1v16c0 0.55 0.45 1 1 1h9c0.55 0 1 -0.45 1 -1v-1"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="48;0" /></path><path strokeDasharray="12" strokeDashoffset="12" d="M10 12h11"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s" values="12;0" /></path><path strokeDasharray="6" strokeDashoffset="6" d="M21 12l-3.5 -3.5M21 12l-3.5 3.5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.9s" dur="0.2s" values="6;0" /></path></g></svg>
                             </button>) : (
