@@ -8,6 +8,9 @@ import { PaymentUpdate } from "../features/payment/paymentSlice";
 import { resetAuthState } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FiEdit } from "react-icons/fi";
+import EditSubsModal from "./EditSubsModal";
+
 
 interface SubsProps {
     ref: React.RefObject<HTMLDivElement | null>;
@@ -26,6 +29,8 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
     const [showModal, setShowModal] = useState(false);
     const [selectedName, setSelectedName] = useState('');
     const [selectedId, setSelectedId] = useState<number | null>(null);
+
+    const [editModal, setEditModal] = useState(false);
 
     useEffect(() => {
         // dispatch(getAllPayments()).unwrap().catch(() => { dispatch(resetAuthState()); navigate('/') })
@@ -50,6 +55,14 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
             await dispatch(updatePayment({ id, request }))
             await dispatch(getAllPayments())
         } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleConfirmEdit = async (newPlanId: number) =>{
+        try{
+            // await dispatch()
+        }catch (error) {
             console.log(error)
         }
     }
@@ -149,6 +162,12 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
                                         </button>
                                     )}
                                     <button onClick={() => {
+                                        setEditModal(true)
+                                    }}>
+                                        <FiEdit className="text-2xl cursor-pointer" />
+                                    </button>
+
+                                    <button onClick={() => {
                                         setSelectedId(subs.id);
                                         setSelectedName(subs.plan.service.name);
                                         setShowModal(true);
@@ -172,9 +191,12 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
                     }}
                 />
 
+                {/* <EditSubsModal
+                    open={editModal}
+                    onClose={() => setEditModal(false)}
+                    onConfirm={}
+                /> */}
             </>
-
-
         )
     }
 
