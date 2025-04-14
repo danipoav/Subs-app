@@ -13,7 +13,7 @@ interface NavbarProps {
 
 export default function Navbar({ servicesRef, manageRef, subsRef }: NavbarProps) {
     const navigate = useNavigate();
-    const { token, status } = useSelector((state: RootState) => state.auth);
+    const { status } = useSelector((state: RootState) => state.auth);
     const dispatch = useDispatch<AppDispatch>();
 
     const handleLogOut = () => {
