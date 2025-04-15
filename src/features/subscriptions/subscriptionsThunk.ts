@@ -42,3 +42,17 @@ export const deleteSubById = createAsyncThunk<string, number>(
         }
     }
 )
+
+export const updateSubscription = createAsyncThunk(
+    '/subscription/update', async (id, request) => {
+        try {
+            const response = fetcher(`subscriptions/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify(request)
+            })
+            return response;
+        } catch (error: any) {
+            throw new Error(error.message || 'Error updating subscription');
+        }
+    }
+)
