@@ -43,9 +43,10 @@ export const deleteSubById = createAsyncThunk<string, number>(
     }
 )
 
-export const updateSubscription = createAsyncThunk<string, { id: number | undefined, request: number }>(
-    '/subscription/update', async (id, request) => {
+export const updateSubscription = createAsyncThunk<string, { id: number | undefined, request: { plan_id: number } }>(
+    '/subscription/update', async ({ id, request }) => {
         try {
+            console.log(id, request)
             const response = fetcher(`subscriptions/${id}`, {
                 method: 'PUT',
                 body: JSON.stringify(request)

@@ -68,7 +68,8 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
 
     const handleConfirmEdit = async (newPlanId: number) => {
         try {
-            await dispatch(updateSubscription({ id: selectedSubscription?.id, request: newPlanId }))
+            await dispatch(updateSubscription({ id: selectedSubscription?.id, request: { plan_id: newPlanId } }))
+            setEditModal(false);
         } catch (error) {
             console.log(error)
         }
@@ -168,17 +169,17 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
                                             Pay now
                                         </button>
                                     )}
-                                    <button onClick={() => {
+                                    {/* <button onClick={() => {
                                         setSelectedSubscription(subs)
+                                        setSelectedPlanId(subs.plan.id)
                                         setEditModal(true)
                                     }}>
                                         <FiEdit className="text-2xl cursor-pointer" />
-                                    </button>
+                                    </button> */}
 
                                     <button onClick={() => {
                                         setSelectedId(subs.id);
                                         setSelectedName(subs.plan.service.name);
-                                        setSelectedPlanId(subs.plan.id)
                                         setShowModal(true);
                                     }} className=" text-red-800 cursor-pointer hover:text-red-600 text-xl">🗑️</button>
                                 </div>
@@ -207,7 +208,7 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
                     currentPlanName={selectedSubscription?.plan.name ?? ""}
                     plans={plans.filter(plan => plan.service.id === selectedSubscription?.plan.service.id)}
                     selectedPlanId={selectedPlanId}
-                    setSelectedPlanId={setSelectedId}
+                    setSelectedPlanId={setSelectedPlanId}
                 />}
             </>
         )
