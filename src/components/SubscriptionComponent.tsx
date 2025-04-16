@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../features/store"
 import { useEffect, useState } from "react";
-import { deleteSubById, getSubsByUserId } from "../features/subscriptions/subscriptionsThunk";
+import { deleteSubById, getSubsByUserId, updateSubscription } from "../features/subscriptions/subscriptionsThunk";
 import { deletPaymentBySubId, getAllPayments, updatePayment } from "../features/payment/paymentThunk";
 import UnsubscribeModal from "./UnsubscribeModal";
 import { PaymentUpdate } from "../features/payment/paymentSlice";
@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FiEdit } from "react-icons/fi";
 import EditSubsModal from "./EditSubsModal";
+import { Subscription } from "../features/subscriptions/subscriptionsSlice";
+import { getAllPlans } from "../features/plans/planThunk";
 
 
 interface SubsProps {
@@ -25,16 +27,21 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
     const authStatus = useSelector((state: RootState) => state.auth.status);
     const subscriptions = useSelector((state: RootState) => state.subscription.subscriptions);
     const payments = useSelector((state: RootState) => state.payment.payments)
+    const plans = useSelector((state: RootState) => state.plan.plans);
 
     const [showModal, setShowModal] = useState(false);
     const [selectedName, setSelectedName] = useState('');
     const [selectedId, setSelectedId] = useState<number | null>(null);
 
     const [editModal, setEditModal] = useState(false);
+    const [selectedSubscription, setSelectedSubscription] = useState<Subscription | null>(null);
+    const [selectedPlanId, setSelectedPlanId] = useState<number>(0);
+
 
     useEffect(() => {
         // dispatch(getAllPayments()).unwrap().catch(() => { dispatch(resetAuthState()); navigate('/') })
         dispatch(getAllPayments())
+        dispatch(getAllPlans())
         userId && dispatch(getSubsByUserId(userId));
     }, [])
 
@@ -59,10 +66,10 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
         }
     }
 
-    const handleConfirmEdit = async (newPlanId: number) =>{
-        try{
-            // await dispatch()
-        }catch (error) {
+    const handleConfirmEdit = async (newPlanId: number) => {
+        try {
+            await dispatch(updateSubscription({ id: selectedSubscription?.id, request: newPlanId }))
+        } catch (error) {
             console.log(error)
         }
     }
@@ -162,6 +169,7 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
                                         </button>
                                     )}
                                     <button onClick={() => {
+                                        setSelectedSubscription(subs)
                                         setEditModal(true)
                                     }}>
                                         <FiEdit className="text-2xl cursor-pointer" />
@@ -170,6 +178,7 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
                                     <button onClick={() => {
                                         setSelectedId(subs.id);
                                         setSelectedName(subs.plan.service.name);
+                                        setSelectedPlanId(subs.plan.id)
                                         setShowModal(true);
                                     }} className=" text-red-800 cursor-pointer hover:text-red-600 text-xl">🗑️</button>
                                 </div>
@@ -191,11 +200,15 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
                     }}
                 />
 
-                {/* <EditSubsModal
+                {<EditSubsModal
                     open={editModal}
                     onClose={() => setEditModal(false)}
-                    onConfirm={}
-                /> */}
+                    onConfirm={handleConfirmEdit}
+                    currentPlanName={selectedSubscription?.plan.name ?? ""}
+                    plans={plans.filter(plan => plan.service.id === selectedSubscription?.plan.service.id)}
+                    selectedPlanId={selectedPlanId}
+                    setSelectedPlanId={setSelectedId}
+                />}
             </>
         )
     }
