@@ -169,13 +169,13 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
                                             Pay now
                                         </button>
                                     )}
-                                    {/* <button onClick={() => {
+                                    <button onClick={() => {
                                         setSelectedSubscription(subs)
                                         setSelectedPlanId(subs.plan.id)
                                         setEditModal(true)
                                     }}>
                                         <FiEdit className="text-2xl cursor-pointer" />
-                                    </button> */}
+                                    </button>
 
                                     <button onClick={() => {
                                         setSelectedId(subs.id);
