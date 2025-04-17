@@ -69,6 +69,8 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
     const handleConfirmEdit = async (newPlanId: number) => {
         try {
             await dispatch(updateSubscription({ id: selectedSubscription?.id, request: { plan_id: newPlanId } }))
+            await dispatch(getAllPayments())
+            await dispatch(getAllPlans())
             setEditModal(false);
         } catch (error) {
             console.log(error)

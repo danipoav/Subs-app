@@ -43,14 +43,14 @@ export const deleteSubById = createAsyncThunk<string, number>(
     }
 )
 
-export const updateSubscription = createAsyncThunk<string, { id: number | undefined, request: { plan_id: number } }>(
+export const updateSubscription = createAsyncThunk<any, { id: number | undefined, request: { plan_id: number } }>(
     '/subscription/update', async ({ id, request }) => {
         try {
-            console.log(id, request)
-            const response = fetcher(`subscriptions/${id}`, {
+            const response = await fetcher(`subscriptions/${id}`, {
                 method: 'PUT',
                 body: JSON.stringify(request)
             })
+            console.log(await response)
             return response;
         } catch (error: any) {
             throw new Error(error.message || 'Error updating subscription');
