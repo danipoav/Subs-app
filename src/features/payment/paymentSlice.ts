@@ -58,6 +58,12 @@ const paymentSlice = createSlice({
             .addCase(deletPaymentBySubId.rejected, (state) => {
                 state.error = 'Error removing payment by subscription ID';
             })
+            .addCase(getAllPayments.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getPaymentBySubsId.pending, (state) => {
+                state.loading = true;
+            })
     }
 });
 
