@@ -56,7 +56,7 @@ export default function EditSubsModal({
                                 >
                                     {plans.map((plan) => (
                                         <option key={plan.id} value={plan.id}>
-                                            {plan.name} - {plan.period}
+                                            {plan.name} - {plan.period === '1 año' ? '1 Year' : '1 Month'}
                                         </option>
                                     ))}
                                 </select>

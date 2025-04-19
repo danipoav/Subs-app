@@ -38,14 +38,6 @@ export default function GraphicComponent() {
 
     if (status !== 'authenticated') return null;
 
-    if (loading) {
-        return (
-            <svg className="svgLoad" viewBox="25 25 50 50">
-                <circle className="circleLoad" r="20" cy="50" cx="50"></circle>
-            </svg>
-        )
-    }
-
     if (error) {
         return (
             <div className="text-red-500 text-center mt-10">
