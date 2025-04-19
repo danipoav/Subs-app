@@ -9,7 +9,7 @@ export default function GraphicComponent() {
     const subscriptions = useSelector((state: RootState) => state.subscription.subscriptions);
     const userId = useSelector((state: RootState) => state.auth.user?.id);
     const status = useSelector((state: RootState) => state.auth.status);
-    const { loading, error } = useSelector((state: RootState) => state.payment);
+    const { error } = useSelector((state: RootState) => state.payment);
 
     const userSubsId = useMemo(
         () => subscriptions.filter(sub => sub.user.id === userId).map(sub => sub.id),

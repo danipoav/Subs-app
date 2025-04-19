@@ -82,7 +82,7 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
     } else {
         if (subscriptions.length === 0) {
             return (
-                <div className="w-full text-center py-20 text-gray-400 flex flex-col items-center">
+                <div ref={ref} className=" scroll-mt-20 w-full text-center py-20 text-gray-400 flex flex-col items-center">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="80"
