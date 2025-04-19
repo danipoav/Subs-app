@@ -9,6 +9,7 @@ export default function GraphicComponent() {
     const subscriptions = useSelector((state: RootState) => state.subscription.subscriptions);
     const userId = useSelector((state: RootState) => state.auth.user?.id);
     const status = useSelector((state: RootState) => state.auth.status);
+    const { loading, error } = useSelector((state: RootState) => state.payment);
 
     const userSubsId = useMemo(
         () => subscriptions.filter(sub => sub.user.id === userId).map(sub => sub.id),
@@ -35,32 +36,41 @@ export default function GraphicComponent() {
         }));
     }, [userPayments])
 
-    if (status === 'authenticated') {
-        if (userPayments.length === 0) {
-            return null;
-        } else {
-            return (
-                <>
-                    <h1 className=" text-3xl text-center w-full border-b border-gray-700 font-semibold text-white mt-10 pb-4">Money Spended</h1>
-                    <div className="bg-black p-6 rounded-lg text-white w-full mt-8">
-                        <ResponsiveContainer width="100%" height={300}>
-                            <BarChart data={spendingByService} barSize={250}>
-                                <XAxis dataKey="name" stroke="white" />
-                                <YAxis stroke="white" />
-                                <Tooltip />
-                                <Bar dataKey="amount" fill="#ff000052" />
-                            </BarChart>
-                        </ResponsiveContainer>
-                        <p className="mt-4 text-sm text-gray-400">Based on all paid subscriptions on each service.</p>
-                    </div>
-                </>
+    if (status !== 'authenticated') return null;
 
-            )
-        }
-
-    } else {
-        return null;
+    if (loading) {
+        return (
+            <svg className="svgLoad" viewBox="25 25 50 50">
+                <circle className="circleLoad" r="20" cy="50" cx="50"></circle>
+            </svg>
+        )
     }
 
+    if (error) {
+        return (
+            <div className="text-red-500 text-center mt-10">
+                <p className="text-lg font-semibold">{error}</p>
+            </div>
+        )
+    }
+
+    if (userPayments.length === 0) return null;
+
+    return (
+        <>
+            <h1 className="text-3xl text-center w-full border-b border-gray-700 font-semibold text-white mt-10 pb-4">Money Spended</h1>
+            <div className="bg-black p-6 rounded-lg text-white w-full mt-8">
+                <ResponsiveContainer width="100%" height={300}>
+                    <BarChart data={spendingByService} barSize={250}>
+                        <XAxis dataKey="name" stroke="white" />
+                        <YAxis stroke="white" />
+                        <Tooltip />
+                        <Bar dataKey="amount" fill="#ff000052" />
+                    </BarChart>
+                </ResponsiveContainer>
+                <p className="mt-4 text-sm text-gray-400">Based on all paid subscriptions on each service.</p>
+            </div>
+        </>
+    );
 
 }

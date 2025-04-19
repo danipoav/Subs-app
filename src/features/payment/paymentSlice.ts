@@ -42,7 +42,7 @@ const paymentSlice = createSlice({
                 state.loading = false;
             })
             .addCase(getPaymentBySubsId.rejected, (state) => {
-                state.error = 'Failed getting payments by id';
+                state.error = 'SESSION EXPIRED';
             })
             .addCase(getAllPayments.fulfilled, (state, action) => {
                 state.payments = action.payload
@@ -50,13 +50,13 @@ const paymentSlice = createSlice({
                 state.loading = false;
             })
             .addCase(getAllPayments.rejected, (state) => {
-                state.error = 'Failed getting all payments';
+                state.error = 'SESSION EXPIRED';
             })
             .addCase(deletPaymentBySubId.fulfilled, (state) => {
                 state.error = null;
             })
             .addCase(deletPaymentBySubId.rejected, (state) => {
-                state.error = 'Error removing payment by subscription ID';
+                state.error = 'SESSION EXPIRED';
             })
             .addCase(getAllPayments.pending, (state) => {
                 state.loading = true;
