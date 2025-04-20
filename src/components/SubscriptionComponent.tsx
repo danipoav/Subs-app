@@ -39,10 +39,20 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
 
 
     useEffect(() => {
-        // dispatch(getAllPayments()).unwrap().catch(() => { dispatch(resetAuthState()); navigate('/') })
-        dispatch(getAllPayments())
-        dispatch(getAllPlans())
-        userId && dispatch(getSubsByUserId(userId));
+        const fetchData = async () => {
+            try {
+                await dispatch(getAllPayments()).unwrap();
+                await dispatch(getAllPlans()).unwrap();
+                if (userId) {
+                    await dispatch(getSubsByUserId(userId)).unwrap();
+                }
+            } catch (error) {
+                dispatch(resetAuthState());
+                navigate('/')
+            }
+        }
+
+        fetchData()
     }, [])
 
     const handleDeleteSubs = async (sub_id: number) => {
