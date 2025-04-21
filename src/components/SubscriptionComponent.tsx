@@ -87,7 +87,7 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
         }
     }
 
-    if (authStatus !== 'authenticated') {
+    if (authStatus !== 'authenticated' || payments.length === 0) {
         return null;
     } else {
         if (subscriptions.length === 0) {
