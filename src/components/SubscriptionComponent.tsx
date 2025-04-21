@@ -59,7 +59,7 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
         try {
             await dispatch(deletPaymentBySubId(sub_id)).unwrap().catch(() => { dispatch(resetAuthState()); navigate('/') });
             await dispatch(deleteSubById(sub_id));
-            await dispatch(getAllPayments())
+            userId && await dispatch(getAllPayments())
             userId && await dispatch(getSubsByUserId(userId));
             toast.success("Subscription removed successfully!")
         } catch (error) {
