@@ -22,13 +22,13 @@ export default function Index() {
     <>
       <div className=" min-h-screen text-white flex flex-col items-center" style={{ background: "#08090a" }}>
         <div className=" w-full max-w-6xl px-6">
-          <Navbar servicesRef={servicesRef} manageRef={manageRef} subsRef={subsRef}/>
+          <Navbar servicesRef={servicesRef} manageRef={manageRef} subsRef={subsRef} />
         </div>
         <Hero servicesRef={servicesRef} />
         <div className="w-full max-w-6xl px-6">
           <ServicesSlider ref={servicesRef} />
           {status === 'authenticated' ? (<>
-            <SubscriptionComponent ref={subsRef}/>
+            <SubscriptionComponent ref={subsRef} />
             <GraphicComponent /></>) : ''}
           <Hero2 ref={manageRef} />
           <Tech />
