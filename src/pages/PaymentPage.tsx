@@ -48,7 +48,7 @@ export default function PaymentPage() {
 
             const subId = result.id;
 
-            dispatch(createPayment({
+            await dispatch(createPayment({
                 amount: plan.price,
                 payment_date: startDate,
                 subscribe_id: subId,
