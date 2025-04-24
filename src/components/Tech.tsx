@@ -14,11 +14,11 @@ export default function Tech() {
 
     return (
         <>
-            <section className=' w-full items-center flex flex-col py-20 '>
+            <section className=' w-full items-center flex flex-col pt-16 md:py-20'>
                 <div className="w-full overflow-hidden relative">
                     <div className="flex animate-marquee space-x-20">
                         {techIcons.concat(techIcons).map((icon, index) => (
-                            <i key={index} className={`${icon} text-white text-7xl`}></i>
+                            <i key={index} className={`${icon} text-white text-5xl md:text-7xl`}></i>
                         ))}
                     </div>
                 </div>
