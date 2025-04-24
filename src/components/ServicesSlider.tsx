@@ -77,7 +77,7 @@ export default function ServicesSlider({ ref }: NavbarProps) {
                                 return ((
                                     <div
                                         key={index}
-                                        className={`min-w-full bg-black p-18 pb-24 rounded-2xl shadow-lg text-white flex items-center gap-6 opacity-0 translate-y-6 transition-opacity duration-700 ease-out ${index === currentIndex ? "opacity-100 translate-y-0" : ""
+                                        className={`min-w-full bg-black py-20 px-16 rounded-2xl shadow-lg text-white flex items-center gap-6 opacity-0 translate-y-6 transition-opacity duration-700 ease-out ${index === currentIndex ? "opacity-100 translate-y-0" : ""
                                             }`}
                                     >
 
@@ -88,7 +88,7 @@ export default function ServicesSlider({ ref }: NavbarProps) {
                                             <h3 className="text-2xl font-semibold">{service.name}</h3>
                                             <p className="mt-2 pb-10 text-justify" style={{ color: "#8a8f98" }}>{service.description}</p>
                                             <div className="flex justify-between">
-                                                <select name="" className=" cursor-pointer px-2 py-2 rounded-lg" onChange={(e) =>
+                                                <select name="" className=" cursor-pointer px-2 py-2 rounded-lg bg-black" onChange={(e) =>
                                                     setSelectedPlan((prev) => ({
                                                         ...prev,
                                                         [currentService.id]: Number(e.target.value),

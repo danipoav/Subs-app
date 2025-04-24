@@ -23,14 +23,14 @@ export default function Hero({ servicesRef }: HeroProps) {
   return (
     <>
       <section className="w-full max-w-6xl mx-auto text-left px-6 pt-32 md:pt-40">
-        <h1 className={`text-3xl sm:text-4xl md:text-6xl font-bold transition-all duration-1000 max-w-4xl ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+        <h1 className={` text-center md:text-left text-2xl sm:text-4xl md:text-6xl font-bold transition-all duration-1000 max-w-4xl ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           {status === 'authenticated'
             ? `Welcome back, ${user?.name}. Ready to take control?`
             : 'Simplify Your Subscription Management'
           }
         </h1>
 
-        <p className={`mt-4 text-md sm:text-lg md:text-xl max-w-2xl text-left transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`} style={{ color: "#8a8f98" }}>
+        <p className={` my-5  text-l sm:text-lg md:text-xl max-w-2xl text-left transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`} style={{ color: "#8a8f98" }}>
           {status === 'authenticated'
             ? 'Take charge of your digital services with confidence. Our platform centralizes all your recurring subscriptions, giving you full visibility and control. From budgeting to smart reminders.'
             : 'Manage all your subscriptions in one place. Our platform helps you track, optimize, and automate your recurring services with ease. Never miss a payment again and stay in control of your expenses effortlessly.'
@@ -50,13 +50,12 @@ export default function Hero({ servicesRef }: HeroProps) {
       <img
         src={heroImage}
         alt="Heroimg"
-        className={`w-full delay-1200 duration-1000 transition-all   ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+        className={`w-full delay-1200 duration-1000 transition-all object-cover h-[250px] md:object-fill md:h-[465px]  ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         style={{
           WebkitMaskImage:
             "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
           maskImage:
             "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%)",
-          height: "465px",
         }}
       />
 
