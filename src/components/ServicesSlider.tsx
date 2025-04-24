@@ -65,8 +65,8 @@ export default function ServicesSlider({ ref }: NavbarProps) {
                     <svg className="svgLoad" viewBox="25 25 50 50">
                         <circle className="circleLoad" r="20" cy="50" cx="50"></circle>
                     </svg> :
-                    <div className=" relative w-full  overflow-hidden">
-                        <div 
+                    <div className="relative w-full  overflow-hidden">
+                        <div
                             className="flex transition-transform duration-700 ease-in-out"
                             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                         >
@@ -77,16 +77,16 @@ export default function ServicesSlider({ ref }: NavbarProps) {
                                 return ((
                                     <div
                                         key={index}
-                                        className={`min-w-full bg-black py-20 px-16 rounded-2xl shadow-lg text-white flex items-center gap-6 opacity-0 translate-y-6 transition-opacity duration-700 ease-out ${index === currentIndex ? "opacity-100 translate-y-0" : ""
+                                        className={`flex flex-col md:flex-row min-w-full bg-black pb-0 pt-10 md:py-20 md:px-16 px-2 rounded-2xl shadow-lg text-white items-center gap-6 opacity-0 translate-y-6 transition-opacity duration-700 ease-out ${index === currentIndex ? "opacity-100 translate-y-0" : ""
                                             }`}
                                     >
 
-                                        <img src={service.logo} alt="Service" className={` w-40 h-40 object-contain`} />
+                                        <img src={service.logo} alt="Service" className={` w-20 h-20 object-contain md:w-40 md:h-40`} />
 
 
                                         <div className="flex-1 text-left">
-                                            <h3 className="text-2xl font-semibold">{service.name}</h3>
-                                            <p className="mt-2 pb-10 text-justify" style={{ color: "#8a8f98" }}>{service.description}</p>
+                                            <h3 className="text-3xl font-semibold text-center md:text-left">{service.name}</h3>
+                                            <p className="mt-2 pb-10 text-justify text-[15px] md:text-lg" style={{ color: "#8a8f98" }}>{service.description}</p>
                                             <div className="flex justify-between">
                                                 <select name="" className=" cursor-pointer px-2 py-2 rounded-lg bg-black" onChange={(e) =>
                                                     setSelectedPlan((prev) => ({
@@ -109,11 +109,11 @@ export default function ServicesSlider({ ref }: NavbarProps) {
                             })}
                         </div>
 
-                        <button onClick={handlePrev} className="btn-slide absolute top-1/2 left-1 -translate-y-1/2  px-4 py-2 rounded-full shadow-md">
+                        <button onClick={handlePrev} className="btn-slide hidden md:block absolute top-1/2 left-1 -translate-y-1/2  px-4 py-2 rounded-full shadow-md">
                             ❮
                         </button>
 
-                        <button onClick={handleNext} className="absolute top-1/2 right-1 -translate-y-1/2 px-4 py-2 rounded-full shadow-md btn-slide">
+                        <button onClick={handleNext} className=" hidden md:block absolute top-1/2 right-1 -translate-y-1/2 px-4 py-2 rounded-full shadow-md btn-slide">
                             ❯
                         </button>
 
