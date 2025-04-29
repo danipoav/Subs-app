@@ -42,7 +42,7 @@ export default function EditSubsModal({
                                 animate={{ scale: 1, opacity: 1 }}
                                 exit={{ scale: 0.9, opacity: 0 }}
                                 transition={{ duration: 0.2 }}
-                                className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-black p-6 rounded-xl shadow-xl w-full max-w-sm"
+                                className="fixed w-[80%] md:w-full z-50 top-[35%] left-[10%] md:left-[40%] -translate-x-1/2 -translate-y-1/2 bg-white text-black p-6 rounded-xl shadow-xl  max-w-sm"
                             >
                                 <Dialog.Title className="text-xl font-bold mb-4 text-center">Edit Subscription</Dialog.Title>
                                 <Dialog.Description className="text-sm text-center mb-6">
@@ -50,7 +50,7 @@ export default function EditSubsModal({
                                 </Dialog.Description>
 
                                 <select
-                                    className="w-full p-2 rounded-lg border border-gray-300 mb-6"
+                                    className=" text-sm md:text-base w-full p-2 rounded-lg border border-gray-300 mb-6"
                                     value={selectedPlanId}
                                     onChange={(e) => setSelectedPlanId(Number(e.target.value))}
                                 >
@@ -64,13 +64,13 @@ export default function EditSubsModal({
                                 <div className="flex justify-center gap-4">
                                     <button
                                         onClick={onClose}
-                                        className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 transition cursor-pointer"
+                                        className=" text-sm md:text-base px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 transition cursor-pointer"
                                     >
                                         Cancel
                                     </button>
                                     <button
                                         onClick={() => onConfirm(selectedPlanId)}
-                                        className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition cursor-pointer"
+                                        className=" text-sm md:text-base px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition cursor-pointer"
                                     >
                                         Save Changes
                                     </button>
