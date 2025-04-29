@@ -28,10 +28,10 @@ export default function UnsubscribeModal({ open, onClose, onConfirm, serviceName
                                 animate={{ scale: 1, opacity: 1 }}
                                 exit={{ scale: 0.9, opacity: 0 }}
                                 transition={{ duration: 0.2 }}
-                                className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-black p-6 rounded-xl shadow-xl w-full max-w-sm"
+                                className="fixed z-50 top-[40%] left-[10%] md:left-[40%] bg-white text-black m-auto px-0 p-6 rounded-xl shadow-xl w-[80%] max-w-sm"
                             >
                                 <Dialog.Title className="text-xl font-bold mb-2 text-center">Unsubscribe</Dialog.Title>
-                                <Dialog.Description className="text-sm text-center mb-4">
+                                <Dialog.Description className="text-sm text-center mb-4 px-5">
                                     Are you sure you want to unsubscribe from <strong>{serviceName}</strong>?
                                 </Dialog.Description>
 
