@@ -51,7 +51,7 @@ export default function GraphicComponent() {
     return (
         <>
             <h1 className="text-3xl text-center w-full border-b border-gray-700 font-semibold text-white mt-10 pb-4">Money Spended</h1>
-            <div className="bg-black p-6 rounded-lg text-white w-full mt-8">
+            <div className="bg-black py-6 px-0 md:p-6 rounded-lg text-white w-full mt-8">
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={spendingByService} barSize={250}>
                         <XAxis dataKey="name" stroke="white" />
