@@ -120,7 +120,7 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
                 <section ref={ref} className="scroll-mt-16 w-full flex flex-col items-center rounded-lg py-10 px-6">
                     <h1 className="text-3xl font-bold mb-8 text-white border-b border-gray-700 pb-4 w-full text-center">Subscriptions</h1>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full ">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                         {subscriptions.map((subs) => {
 
                             const today = new Date();
@@ -137,13 +137,13 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
                             }
 
                             return (
-                                <div key={subs.id} className="bg-black p-6 rounded-lg shadow-md text-white flex items-center gap-4">
+                                <div key={subs.id} className="bg-black p-6 rounded-lg shadow-md text-white flex flex-col items-center gap-4 md:flex-row">
                                     <img
                                         src={subs.plan.service.logo}
                                         alt={subs.plan.service.name}
-                                        className="w-16 h-16 object-contain"
+                                        className="w-10 h-10 object-contain  md:w-16 md:h-16"
                                     />
-                                    <div className="flex-1">
+                                    <div className="flex-1 text-center md:text-left">
                                         <h2 className="text-xl font-semibold">{subs.plan.service.name} – {subs.plan.name}</h2>
                                         <p className="text-sm text-gray-400">
                                             Starts: {new Date(subs.start_date).toLocaleDateString('en-US')} | Renewal:{" "}
@@ -181,19 +181,21 @@ export default function SubscriptionComponent({ ref }: SubsProps) {
                                             Pay now
                                         </button>
                                     )}
-                                    <button onClick={() => {
-                                        setSelectedSubscription(subs)
-                                        setSelectedPlanId(subs.plan.id)
-                                        setEditModal(true)
-                                    }}>
-                                        <FiEdit className="text-2xl cursor-pointer" />
-                                    </button>
+                                    <div className=" flex gap-3">
+                                        <button onClick={() => {
+                                            setSelectedSubscription(subs)
+                                            setSelectedPlanId(subs.plan.id)
+                                            setEditModal(true)
+                                        }}>
+                                            <FiEdit className="text-2xl cursor-pointer" />
+                                        </button>
 
-                                    <button onClick={() => {
-                                        setSelectedId(subs.id);
-                                        setSelectedName(subs.plan.service.name);
-                                        setShowModal(true);
-                                    }} className=" text-red-800 cursor-pointer hover:text-red-600 text-xl">🗑️</button>
+                                        <button onClick={() => {
+                                            setSelectedId(subs.id);
+                                            setSelectedName(subs.plan.service.name);
+                                            setShowModal(true);
+                                        }} className=" text-red-800 cursor-pointer hover:text-red-600 text-2xl">🗑️</button>
+                                    </div>
                                 </div>
                             )
                         })}
