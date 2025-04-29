@@ -73,9 +73,9 @@ export default function ServicesSlider({ ref }: NavbarProps) {
         if (touchStartX !== null && touchEndX !== null) {
             const diff = touchStartX - touchEndX;
             if (diff > 50) {
-                handleNext(); // swipe izquierda
+                handleNext();
             } else if (diff < -50) {
-                handlePrev(); // swipe derecha
+                handlePrev();
             }
         }
         setTouchStartX(null);
@@ -104,7 +104,7 @@ export default function ServicesSlider({ ref }: NavbarProps) {
                                 return ((
                                     <div
                                         key={index}
-                                        className={`flex flex-col md:flex-row min-w-full bg-black pb-0 pt-10 md:py-20 md:px-16 px-2 rounded-2xl shadow-lg text-white items-center gap-6 opacity-0 translate-y-6 transition-opacity duration-700 ease-out ${index === currentIndex ? "opacity-100 translate-y-0" : ""
+                                        className={` h-[480px] md:h-auto flex flex-col md:flex-row min-w-full bg-black pb-0 pt-10 md:py-20 md:px-16 px-2 rounded-2xl shadow-lg text-white items-center gap-6 opacity-0 translate-y-6 transition-opacity duration-700 ease-out ${index === currentIndex ? "opacity-100 translate-y-0" : ""
                                             }`}
                                     >
 
