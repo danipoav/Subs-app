@@ -45,12 +45,12 @@ export default function LoginPage() {
           <div className=" flex justify-center align-middle pb-2">
             <PiSubsetProperOfFill size={50} color="white" />
           </div>
-          <h2 className="text-2xl font-bold text-white mb-6 text-center">Log in to Sub-Lin</h2>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-6 text-center">Log in to Sub-Lin</h2>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             {error && (
               <div className=" text-center">
-                <span className=" text-red-600">Incorrect credentials</span>
+                <span className="text-red-600 text-sm sm:text-base">Incorrect credentials</span>
               </div>
             )}
             <div>
@@ -60,7 +60,7 @@ export default function LoginPage() {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+                className="w-full text-sm bg-gray-800 md:text-base text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
                 style={{ background: "rgb(30, 32, 37)", border: "1px solid rgb(44, 46, 51)" }}
                 required
               />
@@ -72,7 +72,7 @@ export default function LoginPage() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
+                className="w-full text-sm md:text-base bg-gray-800 text-white border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-600"
                 style={{ background: "rgb(30, 32, 37)", border: "1px solid rgb(44, 46, 51)" }}
                 required
               />
@@ -86,7 +86,7 @@ export default function LoginPage() {
             </div>
             <button
               type="submit"
-              className="w-full bg-white text-black font-semibold py-2 rounded-md hover:bg-gray-200 transition duration-200 cursor-pointer"
+              className="w-full bg-white text-black font-semibold py-2 rounded-md hover:bg-gray-200 transition duration-200 cursor-pointer text-sm md:text-lg"
             >
               Login
             </button>
