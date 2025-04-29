@@ -25,6 +25,9 @@ export default function ServicesSlider({ ref }: NavbarProps) {
     const [selectedPlan, setSelectedPlan] = useState<{ [serviceId: number]: number }>({});
     const [currentIndex, setCurrentIndex] = useState(0);
     const currentService = services[currentIndex];
+    const [touchStartX, setTouchStartX] = useState<number | null>(null);
+    const [touchEndX, setTouchEndX] = useState<number | null>(null);
+
 
     useEffect(() => {
         dispatch(getAllServices());
@@ -58,6 +61,27 @@ export default function ServicesSlider({ ref }: NavbarProps) {
         return userSubscriptions.some((sub) => sub.plan.service.id === serviceId)
     }
 
+    const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+        setTouchStartX(e.touches[0].clientX);
+    };
+
+    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+        setTouchEndX(e.touches[0].clientX);
+    };
+
+    const handleTouchEnd = () => {
+        if (touchStartX !== null && touchEndX !== null) {
+            const diff = touchStartX - touchEndX;
+            if (diff > 50) {
+                handleNext(); // swipe izquierda
+            } else if (diff < -50) {
+                handlePrev(); // swipe derecha
+            }
+        }
+        setTouchStartX(null);
+        setTouchEndX(null);
+    };
+
     return (
         <>
             <section ref={ref} className=" scroll-mt-20 w-full flex flex-col items-center py-16 pt-0 ">
@@ -69,6 +93,9 @@ export default function ServicesSlider({ ref }: NavbarProps) {
                         <div
                             className="flex transition-transform duration-700 ease-in-out"
                             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                            onTouchStart={handleTouchStart}
+                            onTouchMove={handleTouchMove}
+                            onTouchEnd={handleTouchEnd}
                         >
                             {services.map((service, index) => {
 
