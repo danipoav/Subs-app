@@ -1,6 +1,6 @@
 export const fetcher = async <T = any>(endpoint: string, options: RequestInit = {}): Promise<T> => {
-    // const url = 'https://k6icxtvsw3.execute-api.eu-west-3.amazonaws.com/api';
-    const url = 'http://localhost:3000/api';
+    const url = 'https://k6icxtvsw3.execute-api.eu-west-3.amazonaws.com/api';
+    // const url = 'http://localhost:3000/api';
     const token = localStorage.getItem('token');
 
     try {
