@@ -59,7 +59,7 @@ export default function Navbar({ servicesRef, manageRef, subsRef }: NavbarProps)
                     </button>
                 </div>
 
-                {/* Menú principal */}
+                {/* Principal Menu */}
                 <div className="hidden md:flex space-x-5">
                     <a onClick={handleServices} className="hover:text-white transition cursor-pointer rounded-lg py-1 px-2 hover:bg-gray-900">Services</a>
                     {status === 'authenticated' && (
@@ -68,7 +68,7 @@ export default function Navbar({ servicesRef, manageRef, subsRef }: NavbarProps)
                     <a onClick={manageScroll} className="hover:text-white transition cursor-pointer rounded-lg py-1 px-2 hover:bg-gray-900">Management</a>
                 </div>
 
-                {/* Botones de login/logout */}
+                {/* login/logout Buttons */}
                 <div className="hidden md:block">
                     {status === 'authenticated' ? (
                         <button onClick={handleLogOut} className="text-gray-300 hover:text-white">
